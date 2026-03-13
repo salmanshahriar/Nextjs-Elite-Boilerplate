@@ -4,7 +4,7 @@
 </div>
 <div align="center">
 
-![Next.js](https://img.shields.io/badge/Next.js-15.1.11-black?style=for-the-badge&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
@@ -26,9 +26,9 @@ Most Next.js starters leave you wiring from scratch. This boilerplate prioritize
 
 With this template you get:
 
-- Central config - Single [app-main-meta-data.json](lib/config/app-main-meta-data.json) for app name, SEO, languages, organization, theme; drives metadata, sitemap, robots, manifest
+- Central config - Single [app-main-meta-data.json](src/shared/lib/config/app-main-meta-data.json) for app name, SEO, languages, organization, theme; drives metadata, sitemap, robots, manifest
 - Type-safe i18n - English, বাংলা, العربية with RTL. Example: `t("navigation.home")` is type-checked (invalid keys fail at compile time)
-- Role-based access control - [Next.js 15 parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) for User and Admin. Example: `app/(protected)/@admin/dashboard` and `app/(protected)/@user/dashboard` both map to `/dashboard`, so roles stay hidden from the URL
+- Role-based access control - [Next.js 16 parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) for User and Admin. Example: `app/(protected)/@admin/dashboard` and `app/(protected)/@user/dashboard` both map to `/dashboard`, so roles stay hidden from the URL
 - [NextAuth.js](https://next-auth.js.org/) - Auth with optional [Google OAuth](https://next-auth.js.org/providers/google); admin role via `AUTH_ADMIN_EMAILS`
 - SEO - Open Graph, Twitter Card, JSON-LD, multi-language meta, dynamic sitemap, canonical URLs
 - [next-themes](https://github.com/pacocoursey/next-themes) - Dark mode with system preference and manual toggle
@@ -38,9 +38,9 @@ With this template you get:
 - [GitHub Actions](https://github.com/features/actions) - Check workflow (lint, format, test, build) and Playwright E2E workflow
 - Health check - `GET /api/health` returns `{ status: "ok" }` for load balancers and Kubernetes probes
 - [shadcn/ui](https://ui.shadcn.com/) - Accessible, customizable components (Radix + CVA)
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first styling
+- [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first styling
 - [TypeScript](https://www.typescriptlang.org/) - Strict mode for type safety
-- [Next.js 15](https://nextjs.org/) - App Router, Server Components, recommended stable 15.x
+- [Next.js 16](https://nextjs.org/) - App Router, Server Components, recommended stable 16.x
 
 ### Infrastructure & deployments
 
@@ -59,7 +59,7 @@ Deploy with [Vercel](https://vercel.com) by clicking the button below:
 
 ### Next.js version
 
-This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. You can use Next.js 16 if you prefer, but 15 is recommended to avoid known security issues and to keep compatibility with the ecosystem (e.g. NextAuth.js). Stay on the latest 15.x patch for security updates.
+This boilerplate uses **Next.js 16** (16.1.6) for **stability and security**. Stay on the latest 16.x patch for security updates.
 
 ### Installation
 
@@ -93,41 +93,38 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 ### First-time setup
 
 1. Copy `.env.example` to `.env` and set `NEXT_PUBLIC_APP_URL` if you need to override the site URL (e.g. in production).
-2. Edit **`lib/config/app-main-meta-data.json`** — main config for app name, domain, SEO, languages, organization, and theme. Sitemap, robots, and manifest are generated from it.
+2. Edit **`src/shared/lib/config/app-main-meta-data.json`** — main config for app name, domain, SEO, languages, organization, and theme. Sitemap, robots, and manifest are generated from it.
 3. For **Google sign-in**: set `NEXTAUTH_URL`, `NEXTAUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` in `.env`, then set `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true`. See [Google OAuth setup](#google-oauth-setup) below.
 
 ## 📁 Project Structure
 
 ```
 .
-├── app/
-│   ├── (protected)/             # Authenticated area with RBAC
-│   │   ├── @admin/              # Admin dashboard
-│   │   ├── @user/               # User dashboard
-│   │   └── layout.tsx           # Chooses segment based on role
-│   ├── api/
-│   │   ├── auth/[...nextauth]/  # NextAuth routes
-│   │   └── health/              # Health check endpoint
-│   ├── auth/login/              # Login page
-│   ├── unauthorized/            # 403 page
-│   ├── about/                   # About page
-│   ├── layout.tsx               # Root layout (providers, SEO, theme, i18n)
-│   ├── error.tsx                # Global error boundary
-│   ├── not-found.tsx            # 404 page
-│   ├── manifest.ts              # Web manifest from config
-│   ├── robots.ts                # robots.txt from config
-│   └── sitemap.ts               # Sitemap from config
-├── components/
-│   ├── ui/                      # shadcn/ui components
-│   └── ...                      # Layout + shared components
+├── src/
+│   ├── app/                     # App Router pages and layouts
+│   │   ├── (protected)/         # Authenticated area with RBAC
+│   │   │   ├── @admin/          # Admin dashboard
+│   │   │   ├── @user/               # User dashboard
+│   │   │   └── layout.tsx       # Chooses segment based on role
+│   │   ├── api/                 # API routes
+│   │   │   ├── auth/            # NextAuth routes
+│   │   │   └── health/          # Health check endpoint
+│   │   ├── layout.tsx           # Root layout (providers, SEO, theme, i18n)
+│   │   ├── error.tsx            # Global error boundary
+│   │   ├── not-found.tsx        # 404 page
+│   │   ├── manifest.ts          # Web manifest from config
+│   │   ├── robots.ts            # robots.txt from config
+│   │   └── sitemap.ts           # Sitemap from config
+│   └── shared/                  # Shared logic and components
+│       ├── components/          # Reusable React components
+│       ├── hooks/               # Selection of custom React hooks
+│       ├── layout/              # Layout components (header, footer, etc.)
+│       ├── lib/                 # Core logic, config, and utils
+│       │   ├── auth/            # Auth context, NextAuth options, types
+│       │   ├── config/          # Central config (app-main-meta-data.json)
+│       │   └── i18n/            # i18n config, hooks, types
+│       └── ui/                  # shadcn/ui components
 ├── locales/                     # Translation files (en.json, bn.json, ar.json)
-├── lib/
-│   ├── auth/                    # Auth context, NextAuth options, types
-│   ├── config/                  # Central config (site, app-main-meta-data.json)
-│   ├── i18n/                    # i18n config, hooks, types
-│   ├── env.ts                   # Env validation (Zod)
-│   ├── schemas.ts               # Example Zod schemas for API responses
-│   └── utils.ts                 # Helpers (+ tests)
 ├── e2e/                         # Playwright E2E tests
 ├── .github/workflows/           # CI (check.yml, playwright.yml)
 └── public/                      # Static assets (favicon, og image, etc.)
@@ -137,7 +134,7 @@ This boilerplate uses **Next.js 15** (15.1.11) for **stability and security**. Y
 
 ### Site & SEO configuration
 
-Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO, languages, organization, theme. It drives metadata, sitemap, robots, manifest, and i18n locales.
+Edit **`src/shared/lib/config/app-main-meta-data.json`** to customize app name, domain, SEO, languages, organization, theme. It drives metadata, sitemap, robots, manifest, and i18n locales.
 
 ```json
 {
@@ -172,11 +169,11 @@ Edit **`lib/config/app-main-meta-data.json`** to customize app name, domain, SEO
 
 ### Adding a New Language
 
-1. Add **`lib/config/app-main-meta-data.json`** entry:
+1. Add **`src/shared/lib/config/app-main-meta-data.json`** entry:
    - Append the language code to `languages.supported` (e.g. `"es"`).
    - Add an entry under `languages.locales` (e.g. `"es": { "code": "es", "name": "Spanish", "nativeName": "Español", "locale": "es_ES", "direction": "ltr" }`).
 2. Create **`locales/es.json`** (or your code) with the same structure as `locales/en.json`.
-3. In **`lib/i18n/get-translations.ts`**, import the new file and add it to the `translations` object. Add the new key to the `TranslationKeys` union in **`lib/i18n/types.ts`** if you use strict keys.
+3. In **`src/shared/lib/i18n/get-translations.ts`**, import the new file and add it to the `translations` object. Add the new key to the `TranslationKeys` union in **`src/shared/lib/i18n/types.ts`** if you use strict keys.
 
 Type-safe usage example:
 
@@ -204,7 +201,7 @@ t("navigation.home");
 
 2. Add your role-specific pages inside the folder
 
-3. Update `app/(protected)/layout.tsx` to handle the new role:
+3. Update `src/app/(protected)/layout.tsx` to handle the new role:
    ```typescript
    if (currentUser?.role === "moderator") return moderator;
    ```
@@ -248,10 +245,10 @@ Your URL stays clean. Even with parallel routes like `app/(protected)/@admin/das
 
 ## 🧪 Tech Stack
 
-- **Framework:** Next.js 15.1.11 (App Router)
+- **Framework:** Next.js 16.1.6 (App Router)
 - **Language:** TypeScript
 - **Auth:** NextAuth.js (Google OAuth, JWT session)
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS v4
 - **Components:** shadcn/ui
 - **Internationalization:** Type-safe i18n (locales from config)
 - **Code Quality:** ESLint, Prettier, TypeScript strict mode
