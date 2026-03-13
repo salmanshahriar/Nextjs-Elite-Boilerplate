@@ -7,7 +7,12 @@
 ![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+<br/>
+
 <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z0erbpt4iuqs3m6tzbn7.jpg" alt="Next.js Production-Ready Boilerplate" />
+
+<br/>
 
 [**Live Demo** ↗](https://nextjs-boilerplate-production-ready.vercel.app/) · [**Use this template** ↗](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/generate) · [Report Bug ↗](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues) · [Request Feature ↗](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues)
 
