@@ -89,7 +89,7 @@ const HeroSection = () => {
               )}
             </div>
             <a
-              href="https://github.com/salmanshahriar/nextjs-boilerplate-production-ready"
+              href="https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-secondary text-secondary-foreground hover:bg-secondary/80 flex items-center gap-2 rounded-lg px-6 py-6 text-lg font-medium transition-colors"

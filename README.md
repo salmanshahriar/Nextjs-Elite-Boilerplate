@@ -14,9 +14,9 @@
 
 <br/>
 
-[**Live Demo** ↗](https://nextjs-boilerplate-production-ready.vercel.app/) · [**Use this template** ↗](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/generate) · [Report Bug ↗](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues) · [Request Feature ↗](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/issues)
+[**Live Demo** ↗](https://nextjs-elite.vercel.app/) · [**Use this template** ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/generate) · [Report Bug ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/issues) · [Request Feature ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/issues)
 
-<img src="https://nextjs-boilerplate-production-ready.vercel.app/og-image.webp" alt="Next.js Production-Ready Boilerplate" />
+<img src="https://nextjs-elite.vercel.app/og-image.webp" alt="Next.js Production-Ready Boilerplate" />
 
 </div>
 
@@ -54,7 +54,7 @@ With this template you get:
 
 Deploy with [Vercel](https://vercel.com) by clicking the button below:
 
-[![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/nextjs-boilerplate-production-ready)
+[![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate)
 
 ## Quick Start
 
@@ -72,8 +72,8 @@ This boilerplate uses **Next.js 16** (16.1.6) for **stability and security**. St
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/salmanshahriar/nextjs-boilerplate-production-ready.git
-   cd nextjs-boilerplate-production-ready
+   git clone https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate.git
+   cd Nextjs-Elite-Boilerplate
    ```
 
 2. **Install dependencies**
@@ -299,10 +299,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **[ If this boilerplate saved you time, a star helps more devs discover it ]**
 
-[![GitHub stars](https://img.shields.io/github/stars/salmanshahriar/nextjs-boilerplate-production-ready?style=social)](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/salmanshahriar/Nextjs-Elite-Boilerplate?style=social)](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/stargazers)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=bottom-right)](https://www.star-history.com/#salmanshahriar/nextjs-boilerplate-production-ready&type=date&legend=bottom-right)
+[![Star History Chart](https://api.star-history.com/svg?repos=salmanshahriar/Nextjs-Elite-Boilerplate&type=date&legend=bottom-right)](https://www.star-history.com/#salmanshahriar/Nextjs-Elite-Boilerplate&type=date&legend=bottom-right)
 
-[**Star the repo**](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/stargazers) · [Contribute](https://github.com/salmanshahriar/nextjs-boilerplate-production-ready/blob/main/README.md#-contributing)
+[**Star the repo**](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/stargazers) · [Contribute](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/blob/main/README.md#-contributing)
 
 </div>
