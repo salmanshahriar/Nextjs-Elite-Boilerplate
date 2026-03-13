@@ -1,6 +1,6 @@
 <div align="center">
-<h1>Next.js Production-Ready Boilerplate</h1>
-<p><strong>Ship in days, not weeks.</strong> One config. i18n, RBAC, Google OAuth, SEO & More (ready to go)</p>
+<h1>Next.js Elite: The Ultimate SaaS Starter</h1>
+<p><strong>Enterprise-Grade Foundation.</strong> One config. i18n, RBAC, Google OAuth, SEO & More (built to scale)</p>
 </div>
 <div align="center">
 
@@ -130,7 +130,7 @@ This boilerplate uses **Next.js 16** (16.1.6) for **stability and security**. St
 │       │   ├── config/          # Central config (app-main-meta-data.json)
 │       │   └── i18n/            # i18n config, hooks, types
 │       └── ui/                  # shadcn/ui components
-├── locales/                     # Translation files (en.json, bn.json, ar.json)
+├── locales/                     # Translation files (en, bn, ar, fr, es, zh)
 ├── e2e/                         # Playwright E2E tests
 ├── .github/workflows/           # CI (check.yml, playwright.yml)
 └── public/                      # Static assets (favicon, og image, etc.)
@@ -144,10 +144,10 @@ Edit **`src/shared/lib/config/app-main-meta-data.json`** to customize app name, 
 
 ```json
 {
-  "appName": "Next.js Boilerplate",
-  "appType": "SaaS Platform",
-  "tagline": "Your Tagline Here",
-  "title": "Next.js i18n & Role-Based Access Boilerplate",
+  "appName": "Next.js Elite Boilerplate",
+  "appType": "Enterprise SaaS Starter",
+  "tagline": "Enterprise-Grade Foundation: i18n, RBAC, and OAuth (Built to Scale)",
+  "title": "Next.js Elite: The Ultimate SaaS Starter with i18n & RBAC",
   "description": "Production-ready Next.js boilerplate with multi-language support (i18n) and role-based access control (RBAC)",
   "locale": "en_US",
   "language": "en-US",
@@ -158,7 +158,7 @@ Edit **`src/shared/lib/config/app-main-meta-data.json`** to customize app name, 
   "keywords": ["nextjs", "i18n", "rbac", "boilerplate", "multilanguage"],
   "features": ["Multi-language Support", "Role-Based Access Control", "Production Ready"],
   "languages": {
-    "supported": ["en", "bn", "ar"],
+    "supported": ["en", "bn", "ar", "fr", "es", "zh"],
     "default": "en",
     "locales": { "...": "..." }
   },

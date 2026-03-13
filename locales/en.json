@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Next.js Boilerplate",
+    "appName": "Next.js Elite Boilerplate",
     "selectLanguage": "Select Language",
     "loading": "Loading...",
     "error": "Error",
@@ -65,14 +65,14 @@
   },
   "home": {
     "features": {
-      "typeSafe": "Type-safe i18n with TypeScript",
-      "localStorage": "Language persistence based on localStorage",
-      "rtl": "RTL support for Arabic",
-      "rbac": "Role-based access control (User and Admin)",
-      "seo": "SEO optimized metadata",
-      "production": "Production-ready architecture",
-      "stack": "Modern technology stack",
-      "ui-experience": "Customizable UI experience"
+      "typeSafe": "Type-Safe Multi-Language Engine",
+      "localStorage": "Locale retention across user sessions",
+      "rtl": "Native RTL support for Arabic",
+      "rbac": "Advanced Role-Based Access Control",
+      "seo": "Programmatic SEO & Dynamic Metadata",
+      "production": "Production-optimized SaaS architecture",
+      "stack": "Next.js 16, TypeScript & Tailwind",
+      "ui-experience": "Fully customizable, themeable shadcn/ui components"
     }
   },
   "about": {

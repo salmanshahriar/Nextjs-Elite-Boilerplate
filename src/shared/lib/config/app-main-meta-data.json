@@ -1,8 +1,8 @@
 {
-  "appName": "Next.js Boilerplate",
-  "appType": "SaaS Platform",
-  "tagline": "i18n · RBAC · Google OAuth & More (ship in days, not weeks)",
-  "title": "Next.js i18n & Role-Based Access Boilerplate",
+  "appName": "Next.js Elite",
+  "appType": "Enterprise SaaS Starter",
+  "tagline": "Enterprise-Grade Foundation: i18n, RBAC, and OAuth (Built to Scale)",
+  "title": "Next.js Elite: The Ultimate SaaS Starter with i18n & RBAC",
   "description": "Production-ready Next.js boilerplate with multi-language support (i18n) and role-based access control (RBAC)",
   "locale": "en_US",
   "language": "en-US",
@@ -13,7 +13,7 @@
   "keywords": ["nextjs", "i18n", "rbac", "boilerplate", "multilanguage"],
   "features": ["Multi-language Support", "Role-Based Access Control", "Production Ready"],
   "languages": {
-    "supported": ["en", "bn", "ar"],
+    "supported": ["en", "bn", "ar", "fr", "es", "zh"],
     "default": "en",
     "locales": {
       "en": {
@@ -36,6 +36,27 @@
         "nativeName": "العربية",
         "locale": "ar_SA",
         "direction": "rtl"
+      },
+      "fr": {
+        "code": "fr",
+        "name": "French",
+        "nativeName": "Français",
+        "locale": "fr_FR",
+        "direction": "ltr"
+      },
+      "es": {
+        "code": "es",
+        "name": "Spanish",
+        "nativeName": "Español",
+        "locale": "es_ES",
+        "direction": "ltr"
+      },
+      "zh": {
+        "code": "zh",
+        "name": "Chinese",
+        "nativeName": "简体中文",
+        "locale": "zh_CN",
+        "direction": "ltr"
       }
     }
   },

@@ -3,11 +3,17 @@ import type { TranslationKeys } from "./types";
 import enTranslations from "@/locales/en.json";
 import bnTranslations from "@/locales/bn.json";
 import arTranslations from "@/locales/ar.json";
+import frTranslations from "@/locales/fr.json";
+import esTranslations from "@/locales/es.json";
+import zhTranslations from "@/locales/zh.json";
 
 const translations = {
   en: enTranslations,
   bn: bnTranslations as typeof enTranslations,
   ar: arTranslations as typeof enTranslations,
+  fr: frTranslations as typeof enTranslations,
+  es: esTranslations as typeof enTranslations,
+  zh: zhTranslations as typeof enTranslations,
 } as const;
 
 export type Messages = typeof enTranslations;
@@ -18,7 +24,7 @@ export type Messages = typeof enTranslations;
  * @returns Translation messages for the locale
  */
 export function getTranslations(locale: Locale): Messages {
-  return translations[locale] || translations.en;
+  return (translations as Record<string, Messages>)[locale] || translations.en;
 }
 
 /**
