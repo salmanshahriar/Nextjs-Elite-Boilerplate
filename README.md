@@ -16,7 +16,7 @@
 
 [**Live Demo** ↗](https://nextjs-elite.vercel.app/) · [**Use this template** ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/generate) · [Report Bug ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/issues) · [Request Feature ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/issues)
 
-<img src="https:///Nextjs-Elite-Boilerplate.vercel.app/og-image.webp" alt="Next.js Elite Boilerplate" />
+<img src="https://nextjs-elite-boilerplate.vercel.app/og-image.webp" alt="Next.js Elite Boilerplate" />
 
 </div>
 
