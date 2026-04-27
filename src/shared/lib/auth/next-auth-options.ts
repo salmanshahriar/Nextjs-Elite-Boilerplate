@@ -1,6 +1,7 @@
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import type { UserRole } from "@/shared/lib/auth/types";
+import { getPermissionsForRole } from "@/shared/lib/auth/authorization";
+import type { AuthPermission, UserRole } from "@/shared/lib/auth/types";
 
 const adminEmails = (process.env.AUTH_ADMIN_EMAILS ?? "")
   .split(",")
@@ -36,7 +37,9 @@ export const nextAuthOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user?.email) {
-        token.role = getRole(user.email);
+        const role = getRole(user.email);
+        token.role = role;
+        token.permissions = getPermissionsForRole(role);
         token.email = user.email;
         token.id = user.id ?? token.sub;
       }
@@ -46,6 +49,9 @@ export const nextAuthOptions: NextAuthOptions = {
       if (session.user) {
         (session.user as { id?: string }).id = (token.id ?? token.sub) as string;
         (session.user as { role?: UserRole }).role = (token.role as UserRole) ?? "user";
+        (session.user as { permissions?: AuthPermission[] }).permissions =
+          (token.permissions as AuthPermission[] | undefined) ??
+          getPermissionsForRole(((token.role as UserRole) ?? "user") as UserRole);
       }
       return session;
     },
@@ -74,6 +80,7 @@ declare module "next-auth" {
       email?: string | null;
       image?: string | null;
       role?: UserRole;
+      permissions?: AuthPermission[];
     };
   }
 }
@@ -82,5 +89,6 @@ declare module "next-auth/jwt" {
   interface JWT {
     role?: UserRole;
     id?: string;
+    permissions?: AuthPermission[];
   }
 }

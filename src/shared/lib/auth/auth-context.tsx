@@ -4,7 +4,12 @@ import type React from "react";
 import { createContext, useContext, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react";
-import type { AuthUser, AuthContext as AuthContextType } from "@/shared/lib/auth/types";
+import { can, getPermissionsForRole, hasPermission } from "@/shared/lib/auth/authorization";
+import type {
+  AuthUser,
+  AuthContext as AuthContextType,
+  AuthPermission,
+} from "@/shared/lib/auth/types";
 import LoadingScreen from "@/shared/components/common/loading-screen";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -29,12 +34,15 @@ function getStoredUser(): AuthUser | null {
 function sessionToAuthUser(
   id: string | undefined,
   email: string | null | undefined,
-  role: "admin" | "user" | undefined
+  role: "admin" | "user" | undefined,
+  permissions: AuthPermission[] | undefined
 ): AuthUser {
+  const resolvedRole = role ?? "user";
   return {
     id: id ?? `user-${Date.now()}`,
     email: email ?? "",
-    role: role ?? "user",
+    role: resolvedRole,
+    permissions: permissions ?? getPermissionsForRole(resolvedRole),
   };
 }
 
@@ -48,7 +56,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       ? sessionToAuthUser(
           (session.user as { id?: string }).id ?? session.user.email ?? undefined,
           session.user.email ?? undefined,
-          (session.user as { role?: "admin" | "user" }).role
+          (session.user as { role?: "admin" | "user" }).role,
+          (session.user as { permissions?: AuthPermission[] }).permissions
         )
       : null;
 
@@ -68,6 +77,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       id: "user-" + Date.now(),
       email,
       role,
+      permissions: getPermissionsForRole(role),
     };
     setDemoUser(mockUser);
     localStorage.setItem("user", JSON.stringify(mockUser));
@@ -103,6 +113,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         signInWithGoogle,
         isAuthenticated: !!user,
         isGoogleEnabled,
+        hasPermission: (permission) => hasPermission(user?.permissions, permission),
+        can: (action, resource) => can(user?.id, user?.permissions, action, resource),
       }}
     >
       {children}

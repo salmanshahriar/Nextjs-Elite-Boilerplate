@@ -4,7 +4,7 @@
 </div>
 <div align="center">
 
-![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black?style=for-the-badge&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16.2.4-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
@@ -32,8 +32,9 @@ Most Next.js starters leave you wiring from scratch. This boilerplate prioritize
 
 - Central config - Single [app-main-meta-data.json](src/shared/lib/config/app-main-meta-data.json) for app name, SEO, languages, organization, theme; drives metadata, sitemap, robots, manifest
 - Type-safe i18n (6 languages) - English, বাংলা, العربية, Français, Español, and 简体中文 with RTL. Example: `t("navigation.home")` is type-checked (invalid keys fail at compile time)
-- Role-based access control - [Next.js 16 parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) for User and Admin. Example: `app/(protected)/@admin/dashboard` and `app/(protected)/@user/dashboard` both map to `/dashboard`, so roles stay hidden from the URL
+- Role-based access control - Permission-based RBAC with role bundles (`user`, `admin`) and ownership scopes (`own`, `any`) plus [Next.js 16 parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes)
 - [NextAuth.js](https://next-auth.js.org/) - Auth with optional [Google OAuth](https://next-auth.js.org/providers/google); admin role via `AUTH_ADMIN_EMAILS`
+- Logout confirmation modal - Prompts users before logout on desktop and mobile sidebar flows
 - SEO - Open Graph, Twitter Card, JSON-LD, multi-language meta, dynamic sitemap, canonical URLs
 - [next-themes](https://github.com/pacocoursey/next-themes) - Dark mode with system preference and manual toggle
 - [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) - Lint and format (Tailwind plugin, format on save in `.vscode`)
@@ -63,7 +64,7 @@ Deploy with [Vercel](https://vercel.com) by clicking the button below:
 
 ### Next.js version
 
-This boilerplate uses **Next.js 16** (16.1.6) for **stability and security**. Stay on the latest 16.x patch for security updates.
+This boilerplate uses **Next.js 16** (16.2.4) for **stability and security**. Stay on the latest 16.x patch for security updates.
 
 ### Installation
 
@@ -197,7 +198,7 @@ t("navigation.home");
 1. **Google Cloud Console**: Go to [APIs & Credentials](https://console.cloud.google.com/apis/credentials) and create an OAuth 2.0 Client ID (Web application).
 2. **Authorized redirect URI**: Add `http://localhost:3000/api/auth/callback/google` (dev) and your production URL (e.g. `https://yourdomain.com/api/auth/callback/google`).
 3. **`.env`**: Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `NEXTAUTH_URL` (e.g. `http://localhost:3000`), and `NEXTAUTH_SECRET` (e.g. `openssl rand -base64 32`). Set `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true` to show the Google sign-in button.
-4. **Admin role**: Optionally set `AUTH_ADMIN_EMAILS=admin@yourdomain.com` (comma-separated) so those Google accounts get the admin role.
+4. **Admin role**: Optionally set `AUTH_ADMIN_EMAILS=admin@yourdomain.com` (comma-separated) so those Google accounts get the admin role and admin permission bundle.
 
 ### Adding a New Role
 
@@ -207,12 +208,18 @@ t("navigation.home");
    mkdir -p app/(protected)/@moderator/dashboard
    ```
 
-2. Add your role-specific pages inside the folder
+2. Add your role-specific pages inside the folder.
 
-3. Update `src/app/(protected)/layout.tsx` to handle the new role:
-   ```typescript
-   if (currentUser?.role === "moderator") return moderator;
-   ```
+3. Extend role permissions in `src/shared/lib/auth/authorization.ts` by adding a new entry to the role permission map.
+
+4. Update `src/app/(protected)/layout.tsx` capability checks if your new role needs a new route slot.
+
+### RBAC permission model
+
+- Roles are bundles of permissions.
+- Permissions are explicit keys such as `article.publish:own` and `article.publish:any`.
+- Ownership checks are resolved by policy helpers in `src/shared/lib/auth/authorization.ts`.
+- Example behavior: a user with `article.publish:own` can publish their own content but cannot publish content owned by another user.
 
 Your URL stays clean. Even with parallel routes like `app/(protected)/@admin/dashboard`, the user still visits `/dashboard` (the role is not exposed in the path).
 
@@ -232,6 +239,7 @@ Your URL stays clean. Even with parallel routes like `app/(protected)/@admin/das
 - **GitHub Actions:** `.github/workflows/check.yml` runs on push/PR: lint, Prettier check, unit tests, build. `.github/workflows/playwright.yml` runs E2E (Chromium, Firefox, WebKit).
 - **Prettier:** `prettier.config.js` + Tailwind plugin. `npm run prettier` to check, `npm run prettier:fix` to fix.
 - **Editor:** `.vscode/settings.json` enables format on save and ESLint fix on save.
+- **Renovate:** `renovate.json` is configured for weekly dependency PRs, grouped non-major updates, and automerge for safe patch/minor updates.
 
 <br/><br/>
 
@@ -241,27 +249,37 @@ Your URL stays clean. Even with parallel routes like `app/(protected)/@admin/das
 
 ## 🛠️ Available Scripts
 
-| Command                 | Description                     |
-| ----------------------- | ------------------------------- |
-| `npm run dev`           | Start development server        |
-| `npm run build`         | Build for production            |
-| `npm run start`         | Start production server         |
-| `npm run lint`          | Run ESLint                      |
-| `npm run lint:fix`      | Fix ESLint errors               |
-| `npm run test`          | Run unit tests (Vitest)         |
-| `npm run test:watch`    | Run unit tests in watch mode    |
-| `npm run test:coverage` | Run unit tests with coverage    |
-| `npm run e2e`           | Run Playwright E2E tests        |
-| `npm run e2e:ui`        | Run Playwright with UI          |
-| `npm run e2e:webkit`    | Run E2E in WebKit (Safari) only |
-| `npm run prettier`      | Check formatting                |
-| `npm run prettier:fix`  | Fix formatting                  |
+| Command                   | Description                                 |
+| ------------------------- | ------------------------------------------- |
+| `npm run dev`             | Start development server                    |
+| `npm run build`           | Build for production                        |
+| `npm run analyze`         | Run Turbopack experimental analyzer         |
+| `npm run analyze:webpack` | Build with bundle analyzer plugin (Webpack) |
+| `npm run start`           | Start production server                     |
+| `npm run lint`            | Run ESLint                                  |
+| `npm run lint:fix`        | Fix ESLint errors                           |
+| `npm run test`            | Run unit tests (Vitest)                     |
+| `npm run test:watch`      | Run unit tests in watch mode                |
+| `npm run test:coverage`   | Run unit tests with coverage                |
+| `npm run e2e`             | Run Playwright E2E tests                    |
+| `npm run e2e:ui`          | Run Playwright with UI                      |
+| `npm run e2e:webkit`      | Run E2E in WebKit (Safari) only             |
+| `npm run prettier`        | Check formatting                            |
+| `npm run prettier:fix`    | Fix formatting                              |
+
+<br/><br/>
+
+## 🔐 Security Notes
+
+- This project intentionally avoids `npm audit fix --force` because it can produce unsafe downgrade paths (for example, to legacy Next.js versions).
+- Use Renovate and controlled dependency updates instead.
+- Remaining audit findings can be transitive upstream advisories while lint, tests, and build remain green.
 
 <br/><br/>
 
 ## 🧪 Tech Stack
 
-- **Framework:** Next.js 16.1.6 (App Router)
+- **Framework:** Next.js 16.2.4 (App Router)
 - **Language:** TypeScript
 - **Auth:** NextAuth.js (Google OAuth, JWT session)
 - **Styling:** Tailwind CSS v4

@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, LogOut, Menu, ChevronLeft, ChevronRight } from "lucide-react";
+import * as Dialog from "@radix-ui/react-dialog";
 import { useAuth } from "@/shared/lib/auth/auth-context";
 import { useLanguage } from "@/shared/lib/i18n/language-context";
 import { getTranslations } from "@/shared/lib/i18n/get-translations";
@@ -32,7 +33,7 @@ interface SidebarContentProps {
   pathname: string;
   isRtl: boolean;
   menuItems: MenuItem[];
-  logout: () => void;
+  onLogoutRequest: () => void;
   onItemClick?: () => void;
   isCollapsed?: boolean;
   onToggleCollapse?: () => void;
@@ -44,7 +45,7 @@ const SidebarContent = ({
   pathname,
   isRtl,
   menuItems,
-  logout,
+  onLogoutRequest,
   onItemClick,
   isCollapsed = false,
   onToggleCollapse,
@@ -185,7 +186,7 @@ const SidebarContent = ({
                   size="icon"
                   className="h-8 w-full"
                   onClick={() => {
-                    logout();
+                    onLogoutRequest();
                     onItemClick?.();
                   }}
                 >
@@ -204,7 +205,7 @@ const SidebarContent = ({
             size="sm"
             className="h-8 w-full justify-start gap-2 text-[11px] font-medium"
             onClick={() => {
-              logout();
+              onLogoutRequest();
               onItemClick?.();
             }}
           >
@@ -220,6 +221,7 @@ const SidebarContent = ({
 export const Sidebar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [collapsed, setCollapsed] = React.useState(false);
+  const [logoutDialogOpen, setLogoutDialogOpen] = React.useState(false);
   const { user, logout } = useAuth();
   const { locale } = useLanguage();
   const pathname = usePathname();
@@ -265,6 +267,16 @@ export const Sidebar = () => {
     <ChevronRight className="h-3 w-3" />
   );
 
+  const handleLogoutRequest = () => {
+    setLogoutDialogOpen(true);
+  };
+
+  const handleConfirmLogout = () => {
+    setLogoutDialogOpen(false);
+    setMobileOpen(false);
+    logout();
+  };
+
   return (
     <>
       {/* Mobile Header with Hamburger */}
@@ -287,7 +299,7 @@ export const Sidebar = () => {
                 pathname={pathname}
                 isRtl={isRtl}
                 menuItems={menuItems}
-                logout={logout}
+                onLogoutRequest={handleLogoutRequest}
                 onItemClick={() => setMobileOpen(false)}
                 isCollapsed={false}
               />
@@ -313,7 +325,7 @@ export const Sidebar = () => {
           pathname={pathname}
           isRtl={isRtl}
           menuItems={menuItems}
-          logout={logout}
+          onLogoutRequest={handleLogoutRequest}
           isCollapsed={collapsed}
           onToggleCollapse={() => setCollapsed(!collapsed)}
         />
@@ -332,6 +344,29 @@ export const Sidebar = () => {
           </div>
         )}
       </aside>
+      <Dialog.Root open={logoutDialogOpen} onOpenChange={setLogoutDialogOpen}>
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/50" />
+          <Dialog.Content className="bg-background fixed top-1/2 left-1/2 z-[70] w-[92vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg border p-6 shadow-lg">
+            <Dialog.Title className="text-base font-semibold">
+              {t("auth.logout.title")}
+            </Dialog.Title>
+            <Dialog.Description className="text-muted-foreground mt-2 text-sm">
+              {t("auth.logout.confirm")}
+            </Dialog.Description>
+            <div className="mt-5 flex justify-end gap-2">
+              <Dialog.Close asChild>
+                <Button variant="outline" size="sm">
+                  {t("common.cancel")}
+                </Button>
+              </Dialog.Close>
+              <Button variant="destructive" size="sm" onClick={handleConfirmLogout}>
+                {t("common.confirm")}
+              </Button>
+            </div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </>
   );
 };
