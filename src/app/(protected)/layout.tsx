@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import type React from "react";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/features/auth/hooks/auth-context";
-import { Sidebar } from "@/components/layout/sidebar";
+import { Sidebar } from '@/components/layout/sidebar';
+import { useAuth } from '@/features/auth/hooks/auth-context';
+import { useRouter } from 'next/navigation';
+import type React from 'react';
+import { useEffect } from 'react';
 
 const ProtectedLayout = ({
   children,
@@ -15,26 +15,34 @@ const ProtectedLayout = ({
   user: React.ReactNode;
   admin: React.ReactNode;
 }) => {
-  const { user: currentUser } = useAuth();
+  const { user: currentUser, isLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!currentUser) {
-      router.replace("/auth/login");
+    if (!isLoading && !currentUser) {
+      router.replace('/auth/login');
     }
-  }, [currentUser, router]);
+  }, [currentUser, isLoading, router]);
 
-  if (!currentUser) return null;
+  if (isLoading || !currentUser) return null;
 
-  const canViewAdminDashboard = currentUser?.permissions.includes("dashboard.view:admin") ?? false;
-  const canViewUserDashboard = currentUser?.permissions.includes("dashboard.view:user") ?? false;
-  const content = canViewAdminDashboard ? admin : canViewUserDashboard ? user : children;
+  const canViewAdminDashboard =
+    currentUser?.permissions.includes('dashboard.view:admin') ?? false;
+  const canViewUserDashboard =
+    currentUser?.permissions.includes('dashboard.view:user') ?? false;
+  const content = canViewAdminDashboard
+    ? admin
+    : canViewUserDashboard
+      ? user
+      : children;
 
   return (
     <div className="flex h-screen">
       <Sidebar />
       <main className="flex-1 overflow-auto">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">{content}</div>
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          {content}
+        </div>
       </main>
     </div>
   );

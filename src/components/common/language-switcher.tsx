@@ -1,22 +1,23 @@
-"use client";
+'use client';
 
-import { Languages } from "lucide-react";
-import { useLanguage } from "@/features/i18n/hooks/language-context";
-import { type Locale, LOCALES } from "@/features/i18n/types/types";
-import { siteConfig } from "@/lib/config/site";
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useEffect } from "react";
+} from '@/components/ui/dropdown-menu';
+import { useLanguage } from '@/features/i18n/hooks/language-context';
+import { type Locale, LOCALES } from '@/features/i18n/types/types';
+import { siteConfig } from '@/lib/config/site';
+import { Languages } from 'lucide-react';
+import { useEffect } from 'react';
 
 function getLocaleLabels(): Record<Locale, string> {
   const labels = {} as Record<Locale, string>;
   for (const code of LOCALES) {
-    labels[code as Locale] = siteConfig.languages.locales[code]?.nativeName ?? code;
+    labels[code as Locale] =
+      siteConfig.languages.locales[code]?.nativeName ?? code;
   }
   return labels;
 }
@@ -24,18 +25,21 @@ function getLocaleLabels(): Record<Locale, string> {
 const localeLabels = getLocaleLabels();
 
 interface LanguageSwitcherProps {
-  variant?: "default" | "titled";
+  variant?: 'default' | 'titled';
   title?: string;
 }
 
-const LanguageSwitcher = ({ variant = "default", title = "Language" }: LanguageSwitcherProps) => {
+const LanguageSwitcher = ({
+  variant = 'default',
+  title = 'Language',
+}: LanguageSwitcherProps) => {
   const { locale, setLocale } = useLanguage();
 
   useEffect(() => {
-    if (locale === "ar") {
-      document.documentElement.dir = "rtl";
+    if (locale === 'ar') {
+      document.documentElement.dir = 'rtl';
     } else {
-      document.documentElement.dir = "ltr";
+      document.documentElement.dir = 'ltr';
     }
     document.documentElement.lang = locale;
   }, [locale]);
@@ -57,7 +61,7 @@ const LanguageSwitcher = ({ variant = "default", title = "Language" }: LanguageS
           <DropdownMenuItem
             key={loc}
             onClick={() => handleLanguageChange(loc)}
-            className={locale === loc ? "bg-accent" : ""}
+            className={locale === loc ? 'bg-accent' : ''}
           >
             <span>{localeLabels[loc]}</span>
           </DropdownMenuItem>
@@ -66,13 +70,13 @@ const LanguageSwitcher = ({ variant = "default", title = "Language" }: LanguageS
     </DropdownMenu>
   );
 
-  if (variant === "titled") {
+  if (variant === 'titled') {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button className="group hover:bg-accent/60 flex w-full flex-1 cursor-pointer items-center justify-between rounded-md border-0 bg-transparent px-2 text-left transition-all">
+          <button className="group flex w-full flex-1 cursor-pointer items-center justify-between rounded-md border-0 bg-transparent px-2 text-left transition-all hover:bg-accent/60">
             <div className="flex min-w-0 items-center gap-2">
-              <span className="text-muted-foreground group-hover:text-foreground truncate text-[11px] font-medium transition-colors">
+              <span className="truncate text-[11px] font-medium text-muted-foreground transition-colors group-hover:text-foreground">
                 {title}
               </span>
             </div>
@@ -87,7 +91,7 @@ const LanguageSwitcher = ({ variant = "default", title = "Language" }: LanguageS
             <DropdownMenuItem
               key={loc}
               onClick={() => handleLanguageChange(loc)}
-              className={locale === loc ? "bg-accent" : ""}
+              className={locale === loc ? 'bg-accent' : ''}
             >
               <span>{localeLabels[loc]}</span>
             </DropdownMenuItem>

@@ -1,41 +1,45 @@
-"use client";
+'use client';
 
-import type React from "react";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/features/auth/hooks/auth-context";
-import { useLanguage } from "@/features/i18n/hooks/language-context";
-import { getTranslations } from "@/features/i18n/config/get-translations";
-import { useTranslations } from "@/features/i18n/hooks/use-translations";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { PasswordInput } from "@/components/ui/password-input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, Copy } from "lucide-react";
-import InputError from "@/components/ui/input-error";
-import TextLink from "@/components/text-link";
-import { HeadManager } from "@/components/common/head-manager";
+import { HeadManager } from '@/components/common/head-manager';
+import TextLink from '@/components/common/text-link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import InputError from '@/components/ui/input-error';
+import { Label } from '@/components/ui/label';
+import { PasswordInput } from '@/components/ui/password-input';
+import { useAuth } from '@/features/auth/hooks/auth-context';
+import { getTranslations } from '@/features/i18n/config/get-translations';
+import { useLanguage } from '@/features/i18n/hooks/language-context';
+import { useTranslations } from '@/features/i18n/hooks/use-translations';
+import { Check, Copy } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 
 const Page = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const router = useRouter();
-  const { login, user, isLoading, signInWithGoogle, isGoogleEnabled } = useAuth();
+  const { login, user, isLoading, signInWithGoogle, isGoogleEnabled } =
+    useAuth();
   const { locale } = useLanguage();
   const messages = getTranslations(locale);
   const { t } = useTranslations(messages);
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
 
-  const copyToClipboard = async (text: string, itemId: string): Promise<void> => {
+  const copyToClipboard = async (
+    text: string,
+    itemId: string,
+  ): Promise<void> => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedItem(itemId);
       setTimeout(() => setCopiedItem(null), 2000);
     } catch (err) {
-      console.error("Failed to copy:", err);
+      console.error('Failed to copy:', err);
     }
   };
 
@@ -43,17 +47,17 @@ const Page = () => {
 
   useEffect(() => {
     if (!isLoading && user) {
-      router.replace("/dashboard");
+      router.replace('/dashboard');
     }
   }, [user, isLoading, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
     setIsLoggingIn(true);
 
     if (!email || !password) {
-      setError(t("auth.login.fillAllFields"));
+      setError(t('auth.login.fillAllFields'));
       setIsLoggingIn(false);
       return;
     }
@@ -61,8 +65,8 @@ const Page = () => {
     try {
       await login(email, password);
     } catch {
-      setError(t("auth.login.invalidCredentials"));
-      setPassword("");
+      setError(t('auth.login.invalidCredentials'));
+      setPassword('');
       setIsLoggingIn(false);
     }
   };
@@ -70,7 +74,7 @@ const Page = () => {
   if (isLoading) {
     return (
       <div className="flex min-h-[calc(100vh-200px)] items-center justify-center">
-        <div>{t("common.loading")}</div>
+        <div>{t('common.loading')}</div>
       </div>
     );
   }
@@ -81,17 +85,22 @@ const Page = () => {
 
   return (
     <>
-      <HeadManager title={`${t("navigation.login")} | ${t("common.appName")}`} />
+      <HeadManager
+        title={`${t('navigation.login')} | ${t('common.appName')}`}
+      />
       <div className="flex min-h-[calc(100vh-200px)] items-center justify-center">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle>{t("auth.login.title")}</CardTitle>
+            <CardTitle>{t('auth.login.title')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <form className="flex flex-col gap-4 sm:gap-6" onSubmit={handleSubmit}>
+            <form
+              className="flex flex-col gap-4 sm:gap-6"
+              onSubmit={handleSubmit}
+            >
               <div className="grid gap-4 sm:gap-6">
                 <div className="grid gap-2">
-                  <Label htmlFor="email">{t("auth.login.email")}</Label>
+                  <Label htmlFor="email">{t('auth.login.email')}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -103,11 +112,11 @@ const Page = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="email@example.com"
                   />
-                  <InputError message={error && !password ? error : ""} />
+                  <InputError message={error && !password ? error : ''} />
                 </div>
 
                 <div className="grid gap-2">
-                  <Label htmlFor="password">{t("auth.login.password")}</Label>
+                  <Label htmlFor="password">{t('auth.login.password')}</Label>
                   <PasswordInput
                     id="password"
                     required
@@ -115,23 +124,23 @@ const Page = () => {
                     autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder={t("auth.login.passwordPlaceholder")}
+                    placeholder={t('auth.login.passwordPlaceholder')}
                   />
-                  <InputError message={error && password ? error : ""} />
+                  <InputError message={error && password ? error : ''} />
                 </div>
 
                 {canResetPassword && (
                   <TextLink
                     href="/password-reset"
-                    className="text-primary ml-auto text-xs sm:text-sm"
+                    className="ml-auto text-xs text-primary sm:text-sm"
                     tabIndex={4}
                   >
-                    {t("auth.login.forgotPassword")}
+                    {t('auth.login.forgotPassword')}
                   </TextLink>
                 )}
 
                 <Button type="submit" tabIndex={3} disabled={isLoggingIn}>
-                  {t("auth.login.submit")}
+                  {t('auth.login.submit')}
                 </Button>
 
                 {isGoogleEnabled && (
@@ -140,8 +149,8 @@ const Page = () => {
                       <span className="absolute inset-0 flex items-center">
                         <span className="w-full border-t" />
                       </span>
-                      <span className="text-muted-foreground relative flex justify-center text-xs uppercase">
-                        {t("auth.login.orContinueWith")}
+                      <span className="relative flex justify-center text-xs text-muted-foreground uppercase">
+                        {t('auth.login.orContinueWith')}
                       </span>
                     </div>
                     <Button
@@ -169,14 +178,14 @@ const Page = () => {
                           fill="#EA4335"
                         />
                       </svg>
-                      {t("auth.login.signInWithGoogle")}
+                      {t('auth.login.signInWithGoogle')}
                     </Button>
                   </>
                 )}
               </div>
             </form>
 
-            <div className="bg-muted mt-4 max-w-md space-y-2 rounded-lg p-4">
+            <div className="mt-4 max-w-md space-y-2 rounded-lg bg-muted p-4">
               <p className="text-sm font-medium">Test Credentials:</p>
               <div className="space-y-2 text-xs">
                 <div>
@@ -184,33 +193,37 @@ const Page = () => {
                     <p className="font-semibold">Admin:</p>
                     <div className="flex items-center">
                       <span className="text-muted-foreground">Email:</span>
-                      <code className="bg-background ml-1 rounded border px-2 py-0.5">
+                      <code className="ml-1 rounded border bg-background px-2 py-0.5">
                         admin@test.com
                       </code>
                       <button
-                        onClick={() => copyToClipboard("admin@test.com", "admin-email")}
-                        className="hover:bg-accent ml-2 rounded p-1 transition-colors"
+                        onClick={() =>
+                          copyToClipboard('admin@test.com', 'admin-email')
+                        }
+                        className="ml-2 rounded p-1 transition-colors hover:bg-accent"
                         title="Copy to clipboard"
                       >
-                        {copiedItem === "admin-email" ? (
+                        {copiedItem === 'admin-email' ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
-                          <Copy className="text-muted-foreground h-3 w-3" />
+                          <Copy className="h-3 w-3 text-muted-foreground" />
                         )}
                       </button>
                     </div>
                     <div className="mt-1 flex items-center">
                       <span className="text-muted-foreground">Pass:</span>
-                      <code className="bg-background ml-1 rounded border px-2 py-0.5">12345</code>
+                      <code className="ml-1 rounded border bg-background px-2 py-0.5">
+                        12345
+                      </code>
                       <button
-                        onClick={() => copyToClipboard("12345", "admin-pass")}
-                        className="hover:bg-accent ml-2 rounded p-1 transition-colors"
+                        onClick={() => copyToClipboard('12345', 'admin-pass')}
+                        className="ml-2 rounded p-1 transition-colors hover:bg-accent"
                         title="Copy to clipboard"
                       >
-                        {copiedItem === "admin-pass" ? (
+                        {copiedItem === 'admin-pass' ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
-                          <Copy className="text-muted-foreground h-3 w-3" />
+                          <Copy className="h-3 w-3 text-muted-foreground" />
                         )}
                       </button>
                     </div>
@@ -222,33 +235,37 @@ const Page = () => {
                     <p className="font-semibold">User:</p>
                     <div className="flex items-center">
                       <span className="text-muted-foreground">Email:</span>
-                      <code className="bg-background ml-1 rounded border px-2 py-0.5">
+                      <code className="ml-1 rounded border bg-background px-2 py-0.5">
                         user@test.com
                       </code>
                       <button
-                        onClick={() => copyToClipboard("user@test.com", "user-email")}
-                        className="hover:bg-accent ml-2 rounded p-1 transition-colors"
+                        onClick={() =>
+                          copyToClipboard('user@test.com', 'user-email')
+                        }
+                        className="ml-2 rounded p-1 transition-colors hover:bg-accent"
                         title="Copy to clipboard"
                       >
-                        {copiedItem === "user-email" ? (
+                        {copiedItem === 'user-email' ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
-                          <Copy className="text-muted-foreground h-3 w-3" />
+                          <Copy className="h-3 w-3 text-muted-foreground" />
                         )}
                       </button>
                     </div>
                     <div className="mt-1 flex items-center">
                       <span className="text-muted-foreground">Pass:</span>
-                      <code className="bg-background ml-1 rounded border px-2 py-0.5">12345</code>
+                      <code className="ml-1 rounded border bg-background px-2 py-0.5">
+                        12345
+                      </code>
                       <button
-                        onClick={() => copyToClipboard("12345", "user-pass")}
-                        className="hover:bg-accent ml-2 rounded p-1 transition-colors"
+                        onClick={() => copyToClipboard('12345', 'user-pass')}
+                        className="ml-2 rounded p-1 transition-colors hover:bg-accent"
                         title="Copy to clipboard"
                       >
-                        {copiedItem === "user-pass" ? (
+                        {copiedItem === 'user-pass' ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
-                          <Copy className="text-muted-foreground h-3 w-3" />
+                          <Copy className="h-3 w-3 text-muted-foreground" />
                         )}
                       </button>
                     </div>

@@ -19,13 +19,14 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./src/*"],
       "@/app/*": ["./src/app/*"],
       "@/features/*": ["./src/features/*"],
       "@/components/*": ["./src/components/*"],
       "@/hooks/*": ["./src/hooks/*"],
       "@/lib/*": ["./src/lib/*"],
-      "@/types/*": ["./src/types/*"]
+      "@/types/*": ["./src/types/*"],
+      "@/locales/*": ["./locales/*"]
     }
   },
   "include": [
@@ -35,5 +36,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "hyip-platform"]
 }

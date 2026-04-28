@@ -3,18 +3,23 @@ import type {
   AuthPermission,
   OwnableResource,
   UserRole,
-} from "@/features/auth/types/types";
+} from '@/features/auth/types/types';
 
 const rolePermissions: Record<UserRole, AuthPermission[]> = {
-  user: ["dashboard.view:user", "article.read:any", "article.create:any", "article.update:own"],
+  user: [
+    'dashboard.view:user',
+    'article.read:any',
+    'article.create:any',
+    'article.update:own',
+  ],
   admin: [
-    "dashboard.view:user",
-    "dashboard.view:admin",
-    "article.read:any",
-    "article.create:any",
-    "article.update:own",
-    "article.publish:own",
-    "article.publish:any",
+    'dashboard.view:user',
+    'dashboard.view:admin',
+    'article.read:any',
+    'article.create:any',
+    'article.update:own',
+    'article.publish:own',
+    'article.publish:any',
   ],
 };
 
@@ -24,7 +29,7 @@ export function getPermissionsForRole(role: UserRole): AuthPermission[] {
 
 export function hasPermission(
   permissions: readonly AuthPermission[] | undefined,
-  permission: AuthPermission
+  permission: AuthPermission,
 ): boolean {
   if (!permissions) return false;
   return permissions.includes(permission);
@@ -33,10 +38,10 @@ export function hasPermission(
 export function canPublishArticle(
   userId: string | undefined,
   permissions: readonly AuthPermission[] | undefined,
-  resource: OwnableResource
+  resource: OwnableResource,
 ): boolean {
-  if (hasPermission(permissions, "article.publish:any")) return true;
-  if (!hasPermission(permissions, "article.publish:own")) return false;
+  if (hasPermission(permissions, 'article.publish:any')) return true;
+  if (!hasPermission(permissions, 'article.publish:own')) return false;
   if (!userId || !resource.ownerId) return false;
   return userId === resource.ownerId;
 }
@@ -45,9 +50,9 @@ export function can(
   userId: string | undefined,
   permissions: readonly AuthPermission[] | undefined,
   action: AuthAction,
-  resource: OwnableResource
+  resource: OwnableResource,
 ): boolean {
-  if (action === "article.publish") {
+  if (action === 'article.publish') {
     return canPublishArticle(userId, permissions, resource);
   }
   return false;

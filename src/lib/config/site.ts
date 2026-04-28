@@ -1,4 +1,4 @@
-import seoData from "./app-main-meta-data.json";
+import seoData from './app-main-meta-data.json';
 
 export interface SiteConfig {
   appName: string;
@@ -75,11 +75,13 @@ export interface SiteConfig {
 
 export const siteConfig = seoData as SiteConfig;
 
-const envUrl = typeof process !== "undefined" && process.env.NEXT_PUBLIC_APP_URL?.trim();
+const envUrl =
+  typeof process !== 'undefined' && process.env.NEXT_PUBLIC_APP_URL?.trim();
 
-export const baseUrl = envUrl || siteConfig.domain || "https://yourdomain.com";
+export const baseUrl = envUrl || siteConfig.domain || 'https://yourdomain.com';
 
-export type Locale = keyof SiteConfig["languages"]["locales"];
+export type Locale = keyof SiteConfig['languages']['locales'];
 
-export const supportedLocales = siteConfig.languages.supported as readonly Locale[];
+export const supportedLocales = siteConfig.languages
+  .supported as readonly Locale[];
 export const defaultLocale = siteConfig.languages.default as Locale;

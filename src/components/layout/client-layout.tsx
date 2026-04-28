@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { usePathname } from "next/navigation";
-import Header from "@/components/layout/header";
+import Header from '@/components/layout/header';
+import { usePathname } from 'next/navigation';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -10,15 +10,19 @@ interface ClientLayoutProps {
 const ClientLayout = ({ children }: ClientLayoutProps) => {
   const pathname = usePathname();
 
-  const protectedRoutes = ["/dashboard"];
-  const isProtectedRoute = protectedRoutes.some((route) => pathname?.startsWith(route));
+  const protectedRoutes = ['/dashboard'];
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    pathname?.startsWith(route),
+  );
 
   const showHeader = !isProtectedRoute;
 
   return (
     <>
       {showHeader && <Header />}
-      <div className="min-h-screen transition-all duration-300 ease-in-out">{children}</div>
+      <div className="min-h-screen transition-all duration-300 ease-in-out">
+        {children}
+      </div>
     </>
   );
 };

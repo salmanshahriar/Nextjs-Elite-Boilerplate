@@ -1,9 +1,9 @@
 ---
 name: Feature request
 about: Suggest an improvement or new capability for this boilerplate
-title: "[Feature] <short summary>"
+title: '[Feature] <short summary>'
 labels: enhancement
-assignees: ""
+assignees: ''
 ---
 
 **Summary**

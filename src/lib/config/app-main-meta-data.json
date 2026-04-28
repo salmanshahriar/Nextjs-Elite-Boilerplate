@@ -11,7 +11,11 @@
   "applicationCategory": "WebApplication",
   "audience": "Developers, Businesses",
   "keywords": ["nextjs", "i18n", "rbac", "boilerplate", "multilanguage"],
-  "features": ["Multi-language Support", "Role-Based Access Control", "Production Ready"],
+  "features": [
+    "Multi-language Support",
+    "Role-Based Access Control",
+    "Production Ready"
+  ],
   "languages": {
     "supported": ["en", "bn", "ar", "fr", "es", "zh"],
     "default": "en",

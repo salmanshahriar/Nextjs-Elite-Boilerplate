@@ -1,9 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-
-/* ============================================
-   CSS Variables - Design Tokens
-   ============================================ */
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 :root {
   /* ========== Color Palette - Light Theme ========== */
@@ -69,8 +65,8 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   /* ========== Typography ========== */
-  --font-sans: "Geist", "Geist Fallback", system-ui, -apple-system, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", "Courier New", monospace;
+  --font-sans: 'Geist', 'Geist Fallback', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', 'Courier New', monospace;
 
   /* ========== Transitions ========== */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -81,13 +77,13 @@
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-/* ============================================
-   Dark Theme Overrides
-   ============================================ */
+/* ========== Dark Theme Overrides ========== */
 
 .dark {
   /* Base Colors */
@@ -195,9 +191,7 @@
   --radius-xl: var(--radius-xl);
 }
 
-/* ============================================
-   Base Styles
-   ============================================ */
+/* ========== Base Styles ========== */
 
 @layer base {
   * {
@@ -247,7 +241,7 @@
 
   /* ========== Focus Styles ========== */
   :focus-visible {
-    @apply outline-ring outline-2 outline-offset-2;
+    @apply outline-2 outline-offset-2 outline-ring;
   }
 
   /* ========== Selection Styles ========== */
@@ -266,7 +260,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/30 rounded-lg;
+    @apply rounded-lg bg-muted-foreground/30;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -274,9 +268,7 @@
   }
 }
 
-/* ============================================
-   Utility Classes
-   ============================================ */
+/* ========== Utility Classes ========== */
 
 @layer utilities {
   /* ========== Text Utilities ========== */
@@ -302,9 +294,7 @@
   }
 }
 
-/* ============================================
-   Animations
-   ============================================ */
+/* ========== Animations ========== */
 
 @keyframes fadeIn {
   from {
@@ -328,25 +318,21 @@
   }
 }
 
-/* ============================================
-   RTL Support
-   ============================================ */
+/* ========== RTL Support ========== */
 
-[dir="rtl"] {
+[dir='rtl'] {
   direction: rtl;
 }
 
-[dir="ltr"] {
+[dir='ltr'] {
   direction: ltr;
 }
 
-/* ============================================
-   Print Styles
-   ============================================ */
+/* ========== Print Styles ========== */
 
 @media print {
   * {
-    @apply text-foreground bg-transparent;
+    @apply bg-transparent text-foreground;
   }
 
   body {

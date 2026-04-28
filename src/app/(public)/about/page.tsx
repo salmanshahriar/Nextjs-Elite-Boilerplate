@@ -1,28 +1,29 @@
-"use client";
+import { getI18n } from '@/features/i18n/server/get-i18n';
+import type { Metadata } from 'next';
 
-import { HeadManager } from "@/components/common/head-manager";
-import { useLanguage } from "@/features/i18n/hooks/language-context";
-import { getTranslations } from "@/features/i18n/config/get-translations";
-import { useTranslations } from "@/features/i18n/hooks/use-translations";
+export const dynamic = 'force-dynamic';
 
-const Page = () => {
-  const { locale } = useLanguage();
-  const messages = getTranslations(locale);
-  const { t } = useTranslations(messages);
-  const isRtl = locale === "ar";
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getI18n();
+
+  return {
+    title: `${t('about.title')} | ${t('common.appName')}`,
+    description: t('about.description'),
+  };
+}
+
+const Page = async () => {
+  const { locale, t } = await getI18n();
+  const isRtl = locale === 'ar';
 
   return (
     <>
-      <HeadManager
-        title={`${t("about.title")} | ${t("common.appName")}`}
-        description={t("about.description")}
-      />
-
-      <div className={`mx-auto max-w-7xl px-4 py-12 ${isRtl ? "text-right" : "text-left"}`}>
-        {/* Hero Section */}
+      <div
+        className={`mx-auto max-w-7xl px-4 py-12 ${isRtl ? 'text-right' : 'text-left'}`}
+      >
         <div className="mb-12 text-center">
-          <h1 className="from-primary to-primary/60 mb-4 bg-linear-to-r bg-clip-text text-5xl font-bold text-transparent">
-            About Us
+          <h1 className="mb-4 bg-linear-to-r from-primary to-primary/60 bg-clip-text text-5xl font-bold text-transparent">
+            {t('about.title')}
           </h1>
         </div>
       </div>

@@ -1,11 +1,10 @@
-import type { Locale } from "../types/types";
-import type { TranslationKeys } from "../types/types";
-import enTranslations from "@/locales/en.json";
-import bnTranslations from "@/locales/bn.json";
-import arTranslations from "@/locales/ar.json";
-import frTranslations from "@/locales/fr.json";
-import esTranslations from "@/locales/es.json";
-import zhTranslations from "@/locales/zh.json";
+import arTranslations from '@/locales/ar.json';
+import bnTranslations from '@/locales/bn.json';
+import enTranslations from '@/locales/en.json';
+import esTranslations from '@/locales/es.json';
+import frTranslations from '@/locales/fr.json';
+import zhTranslations from '@/locales/zh.json';
+import type { Locale, TranslationKeys } from '../types/types';
 
 const translations = {
   en: enTranslations,
@@ -33,11 +32,17 @@ export function getTranslations(locale: Locale): Messages {
  * @param path - Dot notation path (e.g., "common.welcome")
  * @returns The value at the path if it's a string, otherwise undefined
  */
-export function getNestedValue(obj: Record<string, unknown>, path: string): string | undefined {
+export function getNestedValue(
+  obj: Record<string, unknown>,
+  path: string,
+): string | undefined {
   const result = path
-    .split(".")
-    .reduce<unknown>((current, prop) => (current as Record<string, unknown>)?.[prop], obj);
-  return typeof result === "string" ? result : undefined;
+    .split('.')
+    .reduce<unknown>(
+      (current, prop) => (current as Record<string, unknown>)?.[prop],
+      obj,
+    );
+  return typeof result === 'string' ? result : undefined;
 }
 
 /**
@@ -47,7 +52,11 @@ export function getNestedValue(obj: Record<string, unknown>, path: string): stri
  * @param defaultValue - Optional default value if key not found
  * @returns Translated string
  */
-export function t(messages: Messages, key: TranslationKeys, defaultValue?: string): string {
+export function t(
+  messages: Messages,
+  key: TranslationKeys,
+  defaultValue?: string,
+): string {
   const value = getNestedValue(messages, key);
   return value ?? defaultValue ?? key;
 }

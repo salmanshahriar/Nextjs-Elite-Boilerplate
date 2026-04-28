@@ -5,4 +5,4 @@ export type {
   AuthUser,
   OwnableResource,
   UserRole,
-} from "@/features/auth/types/types";
+} from '@/features/auth/types/types';

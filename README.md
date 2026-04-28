@@ -158,7 +158,11 @@ Edit **`src/shared/lib/config/app-main-meta-data.json`** to customize app name, 
   "applicationCategory": "WebApplication",
   "audience": "Developers, Businesses",
   "keywords": ["nextjs", "i18n", "rbac", "boilerplate", "multilanguage"],
-  "features": ["Multi-language Support", "Role-Based Access Control", "Production Ready"],
+  "features": [
+    "Multi-language Support",
+    "Role-Based Access Control",
+    "Production Ready"
+  ],
   "languages": {
     "supported": ["en", "bn", "ar", "fr", "es", "zh"],
     "default": "en",
@@ -188,7 +192,7 @@ Type-safe usage example:
 ```ts
 const { t } = useTranslations(messages);
 
-t("navigation.home");
+t('navigation.home');
 // t("navigation.homer"); // invalid key (type error)
 ```
 

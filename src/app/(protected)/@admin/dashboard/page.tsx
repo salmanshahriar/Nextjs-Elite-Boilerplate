@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useAuth } from "@/features/auth/hooks/auth-context";
-import { useLanguage } from "@/features/i18n/hooks/language-context";
-import { getTranslations } from "@/features/i18n/config/get-translations";
-import { useTranslations } from "@/features/i18n/hooks/use-translations";
-import { HeadManager } from "@/components/common/head-manager";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HeadManager } from '@/components/common/head-manager';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useAuth } from '@/features/auth/hooks/auth-context';
+import { getTranslations } from '@/features/i18n/config/get-translations';
+import { useLanguage } from '@/features/i18n/hooks/language-context';
+import { useTranslations } from '@/features/i18n/hooks/use-translations';
 
 const Page = () => {
   const { user } = useAuth();
@@ -15,14 +15,20 @@ const Page = () => {
 
   return (
     <>
-      <HeadManager title={`${t("dashboard.admin.title")} | ${t("common.appName")}`} />
+      <HeadManager
+        title={`${t('dashboard.admin.title')} | ${t('common.appName')}`}
+      />
       <div className="mx-auto max-w-4xl px-4 py-12 pt-20 md:pt-12">
-        <h1 className="mb-8 text-3xl font-bold">{t("dashboard.admin.title")}</h1>
+        <h1 className="mb-8 text-3xl font-bold">
+          {t('dashboard.admin.title')}
+        </h1>
 
         <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">{t("dashboard.admin.totalUsers")}</CardTitle>
+              <CardTitle className="text-lg">
+                {t('dashboard.admin.totalUsers')}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold">0</p>
@@ -31,7 +37,9 @@ const Page = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">{t("dashboard.admin.activeSessions")}</CardTitle>
+              <CardTitle className="text-lg">
+                {t('dashboard.admin.activeSessions')}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold">0</p>
@@ -40,7 +48,9 @@ const Page = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">{t("dashboard.admin.adminUsers")}</CardTitle>
+              <CardTitle className="text-lg">
+                {t('dashboard.admin.adminUsers')}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold">0</p>
@@ -50,13 +60,15 @@ const Page = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>{t("dashboard.admin.adminInfo")}</CardTitle>
+            <CardTitle>{t('dashboard.admin.adminInfo')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground mb-4">
-              {t("dashboard.admin.loggedInAs")}: {user?.email}
+            <p className="mb-4 text-muted-foreground">
+              {t('dashboard.admin.loggedInAs')}: {user?.email}
             </p>
-            <p className="text-muted-foreground text-sm">{t("dashboard.admin.adminOnly")}</p>
+            <p className="text-sm text-muted-foreground">
+              {t('dashboard.admin.adminOnly')}
+            </p>
           </CardContent>
         </Card>
       </div>

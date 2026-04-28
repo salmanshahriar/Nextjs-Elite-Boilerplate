@@ -1,4 +1,4 @@
-const LoaderIcon = () => {
+export default function LoaderIcon() {
   return (
     <svg
       className="h-5 w-5 animate-spin"
@@ -6,7 +6,14 @@ const LoaderIcon = () => {
       fill="none"
       viewBox="0 0 24 24"
     >
-      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
       <path
         className="opacity-75"
         fill="currentColor"
@@ -14,6 +21,4 @@ const LoaderIcon = () => {
       />
     </svg>
   );
-};
-
-export default LoaderIcon;
+}

@@ -1,12 +1,12 @@
-import type { MetadataRoute } from "next";
-import { baseUrl } from "@/lib/config/site";
+import { baseUrl } from '@/lib/config/site';
+import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/about", "/auth/login", "/unauthorized"];
+  const routes = ['', '/about', '/auth/login', '/unauthorized'];
   return routes.map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
-    changeFrequency: path === "" ? "weekly" : ("monthly" as const),
-    priority: path === "" ? 1 : 0.8,
+    changeFrequency: path === '' ? 'weekly' : ('monthly' as const),
+    priority: path === '' ? 1 : 0.8,
   }));
 }

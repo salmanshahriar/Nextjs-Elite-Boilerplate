@@ -1,20 +1,21 @@
-import type { NextAuthOptions } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import { getPermissionsForRole } from "@/features/auth/utils/authorization";
-import type { AuthPermission, UserRole } from "@/features/auth/types/types";
+import type { AuthPermission, UserRole } from '@/features/auth/types/types';
+import { getPermissionsForRole } from '@/features/auth/utils/authorization';
+import type { NextAuthOptions } from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 
-const adminEmails = (process.env.AUTH_ADMIN_EMAILS ?? "")
-  .split(",")
+const adminEmails = (process.env.AUTH_ADMIN_EMAILS ?? '')
+  .split(',')
   .map((e) => e.trim().toLowerCase())
   .filter(Boolean);
 
 function getRole(email: string | null | undefined): UserRole {
-  if (!email) return "user";
-  return adminEmails.includes(email.toLowerCase()) ? "admin" : "user";
+  if (!email) return 'user';
+  return adminEmails.includes(email.toLowerCase()) ? 'admin' : 'user';
 }
 
 const hasGoogleCreds =
-  Boolean(process.env.GOOGLE_CLIENT_ID) && Boolean(process.env.GOOGLE_CLIENT_SECRET);
+  Boolean(process.env.GOOGLE_CLIENT_ID) &&
+  Boolean(process.env.GOOGLE_CLIENT_SECRET);
 
 export const nextAuthOptions: NextAuthOptions = {
   providers: [
@@ -25,9 +26,9 @@ export const nextAuthOptions: NextAuthOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
             authorization: {
               params: {
-                prompt: "consent",
-                access_type: "offline",
-                response_type: "code",
+                prompt: 'consent',
+                access_type: 'offline',
+                response_type: 'code',
               },
             },
           }),
@@ -47,32 +48,36 @@ export const nextAuthOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (session.user) {
-        (session.user as { id?: string }).id = (token.id ?? token.sub) as string;
-        (session.user as { role?: UserRole }).role = (token.role as UserRole) ?? "user";
+        (session.user as { id?: string }).id = (token.id ??
+          token.sub) as string;
+        (session.user as { role?: UserRole }).role =
+          (token.role as UserRole) ?? 'user';
         (session.user as { permissions?: AuthPermission[] }).permissions =
           (token.permissions as AuthPermission[] | undefined) ??
-          getPermissionsForRole(((token.role as UserRole) ?? "user") as UserRole);
+          getPermissionsForRole(
+            ((token.role as UserRole) ?? 'user') as UserRole,
+          );
       }
       return session;
     },
     async redirect({ url, baseUrl }) {
-      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
       if (new URL(url).origin === baseUrl) return url;
       return `${baseUrl}/dashboard`;
     },
   },
   pages: {
-    signIn: "/auth/login",
-    error: "/auth/login",
+    signIn: '/auth/login',
+    error: '/auth/login',
   },
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
 
-declare module "next-auth" {
+declare module 'next-auth' {
   interface Session {
     user: {
       id?: string;
@@ -85,7 +90,7 @@ declare module "next-auth" {
   }
 }
 
-declare module "next-auth/jwt" {
+declare module 'next-auth/jwt' {
   interface JWT {
     role?: UserRole;
     id?: string;

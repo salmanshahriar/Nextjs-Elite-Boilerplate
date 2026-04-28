@@ -1,13 +1,13 @@
-export type UserRole = "user" | "admin";
-export type AuthAction = "article.publish";
+export type UserRole = 'user' | 'admin';
+export type AuthAction = 'article.publish';
 export type AuthPermission =
-  | "dashboard.view:user"
-  | "dashboard.view:admin"
-  | "article.read:any"
-  | "article.create:any"
-  | "article.update:own"
-  | "article.publish:own"
-  | "article.publish:any";
+  | 'dashboard.view:user'
+  | 'dashboard.view:admin'
+  | 'article.read:any'
+  | 'article.create:any'
+  | 'article.update:own'
+  | 'article.publish:own'
+  | 'article.publish:any';
 
 export interface OwnableResource {
   ownerId?: string | null;

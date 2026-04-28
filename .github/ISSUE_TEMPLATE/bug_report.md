@@ -1,9 +1,9 @@
 ---
 name: Bug report
 about: Report a problem with the Next.js boilerplate
-title: "[Bug] <short summary>"
+title: '[Bug] <short summary>'
 labels: bug
-assignees: ""
+assignees: ''
 ---
 
 **What happened?**

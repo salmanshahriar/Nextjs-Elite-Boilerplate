@@ -37,6 +37,7 @@
     "next-themes": "0.4.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "sonner": "^2.0.7",
     "tailwind-merge": "3.5.0",
     "zod": "4.3.6"
   },
@@ -59,6 +60,7 @@
     "jsdom": "28.1.0",
     "postcss": "^8.5.12",
     "prettier": "3.8.1",
+    "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-tailwindcss": "0.7.2",
     "tailwindcss": "4.2.1",
     "tw-animate-css": "1.4.0",
