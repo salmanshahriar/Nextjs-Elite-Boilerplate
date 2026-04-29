@@ -6,8 +6,11 @@ if (
   process.env.NEXT_PHASE !== 'phase-production-build' &&
   env.BETTER_AUTH_SECRET.startsWith('PLEASE_SET_')
 ) {
-  throw new Error(
-    'Missing BETTER_AUTH_SECRET. Set a 32+ char secret in your environment variables.',
+  console.warn(
+    [
+      '[auth] Missing BETTER_AUTH_SECRET.',
+      'Set a 32+ char secret in your environment variables to secure sessions.',
+    ].join(' '),
   );
 }
 
