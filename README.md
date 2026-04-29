@@ -33,33 +33,20 @@ Most Next.js starters either ship the bare minimum or bolt on a database/ORM you
 
 ## Integrated features
 
-- **Central config** — Single [`src/features/site/site.config.json`](src/features/site/site.config.json) for app name, SEO, languages, organization, theme, and social meta. Drives metadata, sitemap, robots, and the web manifest.
-- **Type-safe environment variables** — [`@t3-oss/env-nextjs`](https://env.t3.gg/) + Zod. Server vs. client split, validated at build time. Mistyped variables fail compilation, not runtime.
-- **Type-safe i18n (6 languages)** — [`next-intl`](https://next-intl.dev/) with **cookie-based locale** (no URL prefix) for English, বাংলা, العربية (RTL), Français, Español, and 简体中文. Translation keys are autocompleted and type-checked: `t("navigation.home")` is valid; `t("navigation.homer")` fails to compile.
-- **Role-based access control** — Permission-based RBAC with role bundles (`user`, `admin`) and granular permissions (e.g. `dashboard.view:admin`). Server-side guards (`requireUser`, `requirePermission`) gate Server Components. Combined with [Next.js parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) (`@admin`, `@user`) so the URL stays role-agnostic (`/dashboard`).
-- **[BetterAuth](https://www.better-auth.com/)** — Modern authentication with email/password, optional Google OAuth, and an [Upstash Redis](https://upstash.com/) adapter for serverless-friendly sessions. Admin role is granted via `AUTH_ADMIN_EMAILS` / `NEXT_PUBLIC_AUTH_ADMIN_EMAILS`.
-- **Demo mode** — Self-contained `src/features/auth/demo/` module gates a click-to-fill credentials panel and an auto-register fallback behind `NEXT_PUBLIC_DEMO_MODE`. Flip the flag (or delete the folder) to ship to production.
-- **[React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)** — Performant, accessible forms with a single source of truth for validation between client and server.
-- **API layer** — [`ofetch`](https://github.com/unjs/ofetch) wrapper for typed HTTP, [TanStack Query](https://tanstack.com/query/latest) for client-side caching, and a worked `users` feature you can copy.
-- **SEO** — Open Graph, Twitter Cards, JSON-LD organization & website schema, dynamic sitemap, robots.txt, canonical URLs, and language alternates — all driven from `site.config.json`.
-- **PWA-ready** — Auto-generated `manifest.webmanifest` from the central config.
-- **Theming** — Custom `ThemeProvider` with system / light / dark modes. No third-party `next-themes` dependency required.
-- **[shadcn/ui](https://ui.shadcn.com/)** — Accessible, copy-and-own components (Radix Primitives + CVA + Tailwind).
-- **[Tailwind CSS v4](https://tailwindcss.com/)** — Utility-first CSS with the new Lightning CSS pipeline.
-- **Monitoring** — [Sentry](https://sentry.io/) wired through `instrumentation.ts` (server) and `instrumentation-client.ts` (client).
-- **Rate limiting** — [`@upstash/ratelimit`](https://github.com/upstash/ratelimit) helper for protecting API routes and Server Actions.
-- **Logging** — [`pino`](https://github.com/pinojs/pino) server-only logger with pretty-printing in development.
-- **[Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/react)** — Fast unit and component tests in `tests/`.
-- **[Playwright](https://playwright.dev/)** — Cross-browser E2E in `e2e/`. Optional WebKit-only mode for low-disk environments.
-- **[Storybook 10](https://storybook.js.org/)** — Isolated component development with a sample story for the `Button`.
-- **[ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)** — Linting (Next, jsx-a11y, Tailwind, Unicorn) and formatting (Tailwind class sorting, organize imports), with format-on-save in `.vscode`.
-- **[Knip](https://knip.dev/)** — Detects unused files, exports, and dependencies. Runs in CI.
-- **[Lefthook](https://github.com/evilmartians/lefthook)** — Lightning-fast Git hooks. Pre-commit runs `eslint --fix` and `prettier --write` on staged files.
-- **[Commitlint](https://commitlint.js.org/)** — Conventional Commits enforced via `commit-msg` hook.
-- **[GitHub Actions](https://github.com/features/actions)** — `check.yml` workflow (typecheck → lint → knip → tests → build) and dedicated `playwright.yml` E2E workflow.
-- **Health check** — `GET /api/health` returns `{ "status": "ok" }` for load balancers and Kubernetes probes.
-- **[TypeScript](https://www.typescriptlang.org/) strict** — `strict`, `noUncheckedIndexedAccess`, `verbatimModuleSyntax`, `noImplicitOverride`, `forceConsistentCasingInFileNames`.
-- **[Next.js 16](https://nextjs.org/)** — App Router, Server Components by default, Turbopack dev/build.
+- **Auth (BetterAuth)** — Email/password with optional Google OAuth, plus an [Upstash Redis](https://upstash.com/) adapter for serverless-friendly sessions. Admin role via `AUTH_ADMIN_EMAILS` / `NEXT_PUBLIC_AUTH_ADMIN_EMAILS`.
+- **RBAC + role-based routing** — Permission-based RBAC (`user`, `admin`) with server-side guards (`requireUser`, `requirePermission`) for Server Components, paired with [parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) (`@admin`, `@user`) so `/dashboard` stays role-agnostic.
+- **Type-safe i18n (6 languages)** — [`next-intl`](https://next-intl.dev/) with **cookie-based locale** (no URL prefix) for English, বাংলা, العربية (RTL), Français, Español, and 简体中文. Keys are type-checked (`t("navigation.home")` works; typos fail compile-time).
+- **UI kit** — [shadcn/ui](https://ui.shadcn.com/) (Radix + CVA + Tailwind) with copy-and-own components.
+- **Central site config** — Single [`src/features/site/site.config.json`](src/features/site/site.config.json) drives app name, SEO, languages, organization, theme, social meta, sitemap, robots, and `manifest.webmanifest`.
+- **SEO that scales** — Open Graph, Twitter Cards, JSON-LD, canonical URLs, language alternates, dynamic sitemap + robots — driven from the central config.
+- **Type-safe env** — [`@t3-oss/env-nextjs`](https://env.t3.gg/) + Zod with server/client split; invalid variables fail early.
+- **Forms** — [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) for fast, accessible forms with shared validation.
+- **API layer** — `ofetch` wrapper for typed HTTP + [TanStack Query](https://tanstack.com/query/latest) for caching, with a worked `users` feature you can copy.
+- **Demo mode (opt-in)** — Self-contained `src/features/auth/demo/` module adds click-to-fill + auto-register behind `NEXT_PUBLIC_DEMO_MODE`. Turn it off (or delete the folder) for production.
+- **Observability & protection** — [Sentry](https://sentry.io/) instrumentation, `pino` server logging, and optional `@upstash/ratelimit` helpers.
+- **Quality gates** — [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/) + React Testing Library, [Playwright](https://playwright.dev/) E2E, and [Storybook](https://storybook.js.org/) for isolated UI.
+- **DX automation** — [Lefthook](https://github.com/evilmartians/lefthook) pre-commit, [Commitlint](https://commitlint.js.org/) commit-msg, [Knip](https://knip.dev/) dead-code/deps hygiene, and GitHub Actions CI.
+- **Health check** — `GET /api/health` returns `{ "status": "ok" }` for load balancers and probes.
 
 <br/>
 
