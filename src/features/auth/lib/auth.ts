@@ -14,6 +14,17 @@ if (
   );
 }
 
+const allowlistedHosts = (() => {
+  const hosts = new Set<string>(['localhost:*', '*.vercel.app']);
+
+  for (const value of [env.BETTER_AUTH_URL, env.NEXT_PUBLIC_APP_URL]) {
+    if (!value) continue;
+    if (URL.canParse(value)) hosts.add(new URL(value).host);
+  }
+
+  return Array.from(hosts);
+})();
+
 const socialProviders =
   env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET
     ? {
@@ -25,7 +36,11 @@ const socialProviders =
     : undefined;
 
 export const auth = betterAuth({
-  baseURL: env.BETTER_AUTH_URL,
+  baseURL: {
+    allowedHosts: allowlistedHosts,
+    protocol: 'auto',
+    fallback: env.BETTER_AUTH_URL,
+  },
   secret: env.BETTER_AUTH_SECRET,
   emailAndPassword: {
     enabled: true,
