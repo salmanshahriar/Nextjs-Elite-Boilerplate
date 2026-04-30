@@ -5,7 +5,9 @@ const PublicLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Header />
-      {children}
+      <main id="main-content" className="flex-1">
+        {children}
+      </main>
     </>
   );
 };

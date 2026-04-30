@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 const AuthLayout = ({ children }: { children: ReactNode }) => {
-  return <>{children}</>;
+  return <main id="main-content">{children}</main>;
 };
 
 export default AuthLayout;
