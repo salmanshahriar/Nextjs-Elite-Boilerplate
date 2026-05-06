@@ -92,6 +92,12 @@ export const metadata: Metadata = {
   },
 };
 
+const shouldRenderStructuredData =
+  baseUrl &&
+  siteConfig.organization.name &&
+  siteConfig.organization.name !== 'Your Organization' &&
+  !baseUrl.includes('yourdomain.com');
+
 const RootLayout = async ({ children }: Readonly<{ children: ReactNode }>) => {
   const [locale, messages, currentUser] = await Promise.all([
     getLocale(),
@@ -110,7 +116,7 @@ const RootLayout = async ({ children }: Readonly<{ children: ReactNode }>) => {
         </NextIntlClientProvider>
         <Analytics />
 
-        {siteConfig.organization.name && (
+        {shouldRenderStructuredData && (
           <script
             id="schema-organization"
             type="application/ld+json"
@@ -149,7 +155,7 @@ const RootLayout = async ({ children }: Readonly<{ children: ReactNode }>) => {
           />
         )}
 
-        {siteConfig.appName && (
+        {shouldRenderStructuredData && siteConfig.appName && (
           <script
             id="schema-webapp"
             type="application/ld+json"
@@ -192,7 +198,7 @@ const RootLayout = async ({ children }: Readonly<{ children: ReactNode }>) => {
           />
         )}
 
-        {baseUrl && (
+        {shouldRenderStructuredData && (
           <script
             id="schema-website"
             type="application/ld+json"
