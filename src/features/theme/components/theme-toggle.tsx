@@ -10,6 +10,7 @@ import {
 import { useTheme } from '@/features/theme/context/theme-provider';
 import { Monitor, Moon, Sun } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useSyncExternalStore } from 'react';
 
 interface ThemeToggleProps {
   variant?: 'default' | 'titled';
@@ -22,6 +23,11 @@ export function ThemeToggle({
 }: ThemeToggleProps) {
   const { setTheme } = useTheme();
   const t = useTranslations();
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   const themeIcons = (
     <span suppressHydrationWarning className="relative inline-flex h-4 w-4">
@@ -56,7 +62,7 @@ export function ThemeToggle({
               {title}
             </span>
             <span className="flex h-9 w-9 items-center justify-center">
-              {themeIcons}
+              {mounted ? themeIcons : null}
             </span>
             <span className="sr-only">{t('common.toggleTheme')}</span>
           </button>
@@ -70,7 +76,7 @@ export function ThemeToggle({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="h-9 w-9">
-          {themeIcons}
+          {mounted ? themeIcons : null}
           <span className="sr-only">{t('common.toggleTheme')}</span>
         </Button>
       </DropdownMenuTrigger>

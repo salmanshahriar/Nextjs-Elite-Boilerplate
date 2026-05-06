@@ -2,10 +2,12 @@ import { env } from '@/libs/env';
 import { ofetch, type FetchOptions } from 'ofetch';
 import type { z } from 'zod';
 
-const baseURL = env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000';
+const baseURL =
+  env.NEXT_PUBLIC_APP_URL ??
+  (typeof window !== 'undefined' ? window.location.origin : '');
 
 export const apiClient = ofetch.create({
-  baseURL: `${baseURL}/api`,
+  baseURL: baseURL ? `${baseURL}/api` : '/api',
   retry: 1,
   retryDelay: 250,
   credentials: 'include',

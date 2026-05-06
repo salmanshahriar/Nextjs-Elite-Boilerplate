@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
 import nextTypescript from 'eslint-config-next/typescript';
 import prettierConfig from 'eslint-config-prettier';
+import reactHooks from 'eslint-plugin-react-hooks';
 import unicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
 
@@ -39,6 +40,7 @@ const config = [
       react: { version: 'detect' },
     },
     plugins: {
+      'react-hooks': reactHooks,
       unicorn,
     },
     rules: {
