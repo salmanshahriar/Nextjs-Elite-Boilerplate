@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Next.js Elite: Production-Ready SaaS Boilerplate</h1>
+<h1>Next.js Elite: A production-ready Next.js boilerplate</h1>
 <p><strong>Frontend-first, API-driven, batteries included.</strong> Built on Next.js 16 + React 19, with i18n, RBAC, BetterAuth, and a polished DX out of the box.</p>
 </div>
 
@@ -13,7 +13,7 @@
 
 <br/>
 
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z0erbpt4iuqs3m6tzbn7.jpg" alt="Next.js Production-Ready Boilerplate" />
+<img src="https://nextjs-elite-boilerplate.vercel.app/Nextjs-Elite-Boilerplate-Cover.webp" alt="Next.js Elite - Production-Ready SaaS Boilerplate" />
 
 <br/><br/>
 
