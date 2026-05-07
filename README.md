@@ -32,26 +32,39 @@
 
 ## Why this boilerplate
 
-Most Next.js starters either ship the bare minimum or bolt on a database/ORM you don't need. **Next.js Elite is intentionally frontend-first** — it consumes APIs (REST/GraphQL/BFF) instead of owning a database, so you can drop it on top of any backend you already have.
+Most Next.js starters either ship the bare minimum or bolt on a database/ORM you don't need. **Next.js Elite is intentionally frontend-first**; it consumes APIs (REST/GraphQL/BFF) instead of owning a database, so you can drop it on top of any backend you already have.
 
 <br/>
 
 ## Integrated features
 
-- **Auth (BetterAuth)** — Email/password with optional Google OAuth, plus an [Upstash Redis](https://upstash.com/) adapter for serverless-friendly sessions. Admin role via `AUTH_ADMIN_EMAILS` / `NEXT_PUBLIC_AUTH_ADMIN_EMAILS`.
-- **RBAC + role-based routing** — Permission-based RBAC (`user`, `admin`) with server-side guards (`requireUser`, `requirePermission`) for Server Components, paired with [parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) (`@admin`, `@user`) so `/dashboard` stays role-agnostic.
-- **Type-safe i18n (6 languages)** — [`next-intl`](https://next-intl.dev/) with **cookie-based locale** (no URL prefix) for English, বাংলা, العربية (RTL), Français, Español, and 简体中文. Keys are type-checked (`t("navigation.home")` works; typos fail compile-time).
-- **UI kit** — [shadcn/ui](https://ui.shadcn.com/) (Radix + CVA + Tailwind) with copy-and-own components.
-- **Central site config** — Single [`src/features/site/site.config.json`](src/features/site/site.config.json) drives app name, SEO, languages, organization, theme, social meta, sitemap, robots, and `manifest.webmanifest`.
-- **SEO that scales** — Open Graph, Twitter Cards, JSON-LD, canonical URLs, language alternates, dynamic sitemap + robots — driven from the central config.
-- **Type-safe env** — [`@t3-oss/env-nextjs`](https://env.t3.gg/) + Zod with server/client split; invalid variables fail early.
-- **Forms** — [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) for fast, accessible forms with shared validation.
-- **API layer** — `ofetch` wrapper for typed HTTP + [TanStack Query](https://tanstack.com/query/latest) for caching, with a worked `users` feature you can copy.
-- **Demo mode (opt-in)** — Self-contained `src/features/auth/demo/` module adds click-to-fill + auto-register behind `NEXT_PUBLIC_DEMO_MODE`. Turn it off (or delete the folder) for production.
-- **Observability & protection** — [Sentry](https://sentry.io/) instrumentation, `pino` server logging, and optional `@upstash/ratelimit` helpers.
-- **Quality gates** — [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/) + React Testing Library, [Playwright](https://playwright.dev/) E2E, and [Storybook](https://storybook.js.org/) for isolated UI.
-- **DX automation** — [Lefthook](https://github.com/evilmartians/lefthook) pre-commit, [Commitlint](https://commitlint.js.org/) commit-msg, [Knip](https://knip.dev/) dead-code/deps hygiene, and GitHub Actions CI.
-- **Health check** — `GET /api/health` returns `{ "status": "ok" }` for load balancers and probes.
+- **Auth (BetterAuth)** —> Email/password with optional Google OAuth, plus an [Upstash Redis](https://upstash.com/) adapter for serverless-friendly sessions. Admin role via `AUTH_ADMIN_EMAILS` / `NEXT_PUBLIC_AUTH_ADMIN_EMAILS`.
+
+- **RBAC + role-based routing** —> Permission-based RBAC (`user`, `admin`) with server-side guards (`requireUser`, `requirePermission`) for Server Components, paired with [parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) (`@admin`, `@user`) so `/dashboard` stays role-agnostic.
+
+- **Type-safe i18n (6 languages)** —> [`next-intl`](https://next-intl.dev/) with **cookie-based locale** (no URL prefix) for English, বাংলা, العربية (RTL), Français, Español, and 简体中文. Keys are type-checked (`t("navigation.home")` works; typos fail compile-time).
+
+- **UI kit** —> [shadcn/ui](https://ui.shadcn.com/) (Radix + CVA + Tailwind) with copy-and-own components.
+
+- **Central site config** —> Single [`src/features/site/site.config.json`](src/features/site/site.config.json) drives app name, SEO, languages, organization, theme, social meta, sitemap, robots, and `manifest.webmanifest`.
+
+- **SEO that scales** —> Open Graph, Twitter Cards, JSON-LD, canonical URLs, language alternates, dynamic sitemap + robots — driven from the central config.
+
+- **Type-safe env** —> [`@t3-oss/env-nextjs`](https://env.t3.gg/) + Zod with server/client split; invalid variables fail early.
+
+- **Forms** —> [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) for fast, accessible forms with shared validation.
+
+- **API layer** —> `ofetch` wrapper for typed HTTP + [TanStack Query](https://tanstack.com/query/latest) for caching, with a worked `users` feature you can copy.
+
+- **Demo mode (opt-in)** —> Self-contained `src/features/auth/demo/` module adds click-to-fill + auto-register behind `NEXT_PUBLIC_DEMO_MODE`. Turn it off (or delete the folder) for production.
+
+- **Observability & protection** —> [Sentry](https://sentry.io/) instrumentation, `pino` server logging, and optional `@upstash/ratelimit` helpers.
+
+- **Quality gates** —> [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/) + React Testing Library, [Playwright](https://playwright.dev/) E2E, and [Storybook](https://storybook.js.org/) for isolated UI.
+
+- **DX automation** —> [Lefthook](https://github.com/evilmartians/lefthook) pre-commit, [Commitlint](https://commitlint.js.org/) commit-msg, [Knip](https://knip.dev/) dead-code/deps hygiene, and GitHub Actions CI.
+
+- **Health check** —> `GET /api/health` returns `{ "status": "ok" }` for load balancers and probes.
 
 <br/>
 
