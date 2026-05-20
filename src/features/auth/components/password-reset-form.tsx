@@ -57,7 +57,7 @@ export default function PasswordResetForm() {
                 <InputError message={emailError} />
               </div>
 
-              <Button type="submit" disabled={form.formState.isSubmitting}>
+              <Button type="submit" loading={form.formState.isSubmitting}>
                 {t('submit')}
               </Button>
             </form>

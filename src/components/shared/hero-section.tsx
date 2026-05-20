@@ -1,11 +1,14 @@
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getLocaleDirection, type Locale } from '@/features/site/config';
 
+const deployUrl =
+  'https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate';
+
+const repoUrl = 'https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate';
+
 const HeroSection = async ({ locale }: { locale: Locale }) => {
   const isRtl = getLocaleDirection(locale) === 'rtl';
-
-  const deployUrl =
-    'https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate';
 
   const features = [
     {
@@ -131,23 +134,21 @@ const HeroSection = async ({ locale }: { locale: Locale }) => {
         </div>
 
         <div className="flex w-full max-w-md flex-col gap-3 sm:flex-row sm:justify-center">
-          <a
-            href="https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center justify-center rounded-lg bg-secondary px-6 py-3 text-base font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
+          <Button
+            asChild
+            size="lg"
+            variant="secondary"
+            className="w-full sm:flex-1"
           >
-            Source code (GitHub)
-          </a>
-
-          <a
-            href={deployUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Deploy Now
-          </a>
+            <a href={repoUrl} target="_blank" rel="noopener noreferrer">
+              Source code (GitHub)
+            </a>
+          </Button>
+          <Button asChild size="lg" className="w-full sm:flex-1">
+            <a href={deployUrl} target="_blank" rel="noopener noreferrer">
+              Deploy Now
+            </a>
+          </Button>
         </div>
       </div>
 

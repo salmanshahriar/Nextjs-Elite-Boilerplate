@@ -1,5 +1,7 @@
 import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/nextjs-vite';
+import { NextIntlClientProvider } from 'next-intl';
+import messages from '../messages/en.json';
 import '../src/app/globals.css';
 
 const preview: Preview = {
@@ -17,6 +19,11 @@ const preview: Preview = {
       themes: { light: '', dark: 'dark' },
       defaultTheme: 'light',
     }),
+    (Story) => (
+      <NextIntlClientProvider locale="en" messages={messages}>
+        <Story />
+      </NextIntlClientProvider>
+    ),
   ],
 };
 

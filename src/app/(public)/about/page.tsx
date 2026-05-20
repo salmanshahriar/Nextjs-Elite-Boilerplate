@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getLocaleDirection, type Locale } from '@/features/site/config';
 import type { Metadata } from 'next';
@@ -132,14 +133,11 @@ const AboutPage = async () => {
           </CardHeader>
           <CardContent className="space-y-3 text-sm text-muted-foreground">
             <p>Deploy to Vercel with one click, then configure env</p>
-            <a
-              href={deployUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              Deploy Now
-            </a>
+            <Button asChild>
+              <a href={deployUrl} target="_blank" rel="noopener noreferrer">
+                Deploy Now
+              </a>
+            </Button>
           </CardContent>
         </Card>
       </div>

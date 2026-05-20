@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
@@ -26,19 +27,12 @@ const GlobalError = ({ error, reset }: GlobalErrorProps) => {
               home page.
             </p>
             <div className="flex items-center justify-center gap-3">
-              <button
-                type="button"
-                onClick={() => reset()}
-                className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
-              >
+              <Button type="button" onClick={() => reset()}>
                 Try again
-              </button>
-              <Link
-                href="/"
-                className="rounded-md border px-4 py-2 text-sm font-medium text-foreground"
-              >
-                Back to home
-              </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/">Back to home</Link>
+              </Button>
             </div>
           </div>
         </div>

@@ -22,6 +22,7 @@ const meta = {
       options: ['default', 'sm', 'lg', 'icon', 'icon-sm', 'icon-lg'],
     },
     disabled: { control: 'boolean' },
+    loading: { control: 'boolean' },
   },
 } satisfies Meta<typeof Button>;
 
@@ -59,4 +60,8 @@ export const Link: Story = {
 
 export const Disabled: Story = {
   args: { children: 'Disabled', disabled: true },
+};
+
+export const Loading: Story = {
+  args: { children: 'Submit', loading: true },
 };

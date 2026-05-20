@@ -102,11 +102,9 @@ const Header = () => {
                 </Button>
               </div>
             ) : (
-              <Link href="/login">
-                <Button size="sm" className="h-8 text-xs">
-                  {t('login')}
-                </Button>
-              </Link>
+              <Button asChild size="sm" className="h-8 text-xs">
+                <Link href="/login">{t('login')}</Link>
+              </Button>
             )}
           </div>
 
@@ -196,11 +194,11 @@ const Header = () => {
                   </Button>
                 </div>
               ) : (
-                <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
-                  <Button size="sm" className="w-full">
+                <Button asChild size="sm" className="w-full">
+                  <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
                     {t('login')}
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               )}
             </div>
           </div>

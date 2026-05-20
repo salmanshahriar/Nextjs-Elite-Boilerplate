@@ -16,9 +16,9 @@ const UnauthorizedPage = async () => {
           <p className="text-muted-foreground">
             You do not have permission to access this page.
           </p>
-          <Link href="/">
-            <Button className="w-full">Go Home</Button>
-          </Link>
+          <Button asChild className="w-full">
+            <Link href="/">Go Home</Link>
+          </Button>
         </CardContent>
       </Card>
     </div>

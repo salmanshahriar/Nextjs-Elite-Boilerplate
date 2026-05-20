@@ -131,7 +131,7 @@ const RegisterForm = () => {
                 </p>
               )}
 
-              <Button type="submit" disabled={form.formState.isSubmitting}>
+              <Button type="submit" loading={form.formState.isSubmitting}>
                 {t('submit')}
               </Button>
             </div>

@@ -137,7 +137,7 @@ const LoginForm = () => {
               <Button
                 type="submit"
                 tabIndex={3}
-                disabled={form.formState.isSubmitting}
+                loading={form.formState.isSubmitting}
               >
                 {t('submit')}
               </Button>
@@ -157,7 +157,7 @@ const LoginForm = () => {
                     variant="outline"
                     className="w-full"
                     onClick={() => signInWithGoogle()}
-                    disabled={form.formState.isSubmitting}
+                    loading={form.formState.isSubmitting}
                   >
                     {t('signInWithGoogle')}
                   </Button>
