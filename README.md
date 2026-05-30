@@ -26,26 +26,27 @@ Most Next.js starters either ship the bare minimum or bolt on a database/ORM you
 
 ## Integrated features
 
-| Feature | Description |
-| ------- | ----------- |
-| **Auth (BetterAuth)** | Email/password with optional Google OAuth via `/api/auth/*`. Admin role via `AUTH_ADMIN_EMAILS` / `NEXT_PUBLIC_AUTH_ADMIN_EMAILS`. Sessions use BetterAuth defaults (plug in your own storage adapter for multi-instance prod). |
-| **RBAC + role-based routing** | Permission-based RBAC (`user`, `admin`) with server-side guards (`requireUser`, `requirePermission`) for Server Components, paired with [parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) (`@admin`, `@user`) so `/dashboard` stays role-agnostic. |
-| **Type-safe i18n (6 languages)** | [`next-intl`](https://next-intl.dev/) with **cookie-based locale** (no URL prefix) for English, বাংলা, العربية (RTL), Français, Español, and 简体中文. Keys are type-checked (`t("navigation.home")` works; typos fail compile-time). |
-| **UI kit** | [shadcn/ui](https://ui.shadcn.com/) (Radix + CVA + Tailwind) with copy-and-own components. |
-| **Central site config** | Single [`src/features/site/site.config.json`](src/features/site/site.config.json) drives app name, SEO, languages, organization, theme, social meta, sitemap, robots, and `manifest.webmanifest`. |
-| **SEO that scales** | Open Graph, Twitter Cards, JSON-LD, canonical URLs, language alternates, dynamic sitemap + robots — driven from the central config. |
-| **Type-safe env** | [`@t3-oss/env-nextjs`](https://env.t3.gg/) + Zod with server/client split; invalid variables fail early. |
-| **Forms** | [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) for fast, accessible forms with shared validation. |
-| **API layer** | `apiFetch` (`ofetch` + Zod) in `src/libs/api-client.ts` defaults to same-origin `/api`; [TanStack Query](https://tanstack.com/query/latest) on the client. Example `users` feature — point at your backend or add route handlers. |
-| **Demo mode (opt-in)** | Self-contained `src/features/auth/demo/` module adds click-to-fill + auto-register behind `NEXT_PUBLIC_DEMO_MODE`. Turn it off (or delete the folder) for production. |
-| **Observability & protection** | [Sentry](https://sentry.io/) instrumentation, `pino` server logging, and optional `getRateLimiter()` in `src/libs/rate-limit.ts` ([Upstash](https://upstash.com/) when `UPSTASH_REDIS_*` is set). |
-| **Quality gates** | [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/) + React Testing Library, and [Playwright](https://playwright.dev/) E2E. |
-| **DX automation** | [Lefthook](https://github.com/evilmartians/lefthook) pre-commit, [Commitlint](https://commitlint.js.org/) commit-msg, [Knip](https://knip.dev/) dead-code/deps hygiene, [Renovate](https://docs.renovatebot.com/) dependency updates, and GitHub Actions CI. |
-| **Health check** | `GET /api/health` returns `{ "status": "ok" }` for load balancers and probes. |
+| Feature                          | Description                                                                                                                                                                                                                                                                                       |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Auth (BetterAuth)**            | Email/password with optional Google OAuth via `/api/auth/*`. Admin role via `AUTH_ADMIN_EMAILS` / `NEXT_PUBLIC_AUTH_ADMIN_EMAILS`. Sessions use BetterAuth defaults (plug in your own storage adapter for multi-instance prod).                                                                   |
+| **RBAC + role-based routing**    | Permission-based RBAC (`user`, `admin`) with server-side guards (`requireUser`, `requirePermission`) for Server Components, paired with [parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) (`@admin`, `@user`) so `/dashboard` stays role-agnostic. |
+| **Type-safe i18n (6 languages)** | [`next-intl`](https://next-intl.dev/) with **cookie-based locale** (no URL prefix) for English, বাংলা, العربية (RTL), Français, Español, and 简体中文. Keys are type-checked (`t("navigation.home")` works; typos fail compile-time).                                                             |
+| **UI kit**                       | [shadcn/ui](https://ui.shadcn.com/) (Radix + CVA + Tailwind) with copy-and-own components.                                                                                                                                                                                                        |
+| **Central site config**          | Single [`src/features/site/site.config.json`](src/features/site/site.config.json) drives app name, SEO, languages, organization, theme, social meta, sitemap, robots, and `manifest.webmanifest`.                                                                                                 |
+| **SEO that scales**              | Open Graph, Twitter Cards, JSON-LD, canonical URLs, language alternates, dynamic sitemap + robots — driven from the central config.                                                                                                                                                               |
+| **Type-safe env**                | [`@t3-oss/env-nextjs`](https://env.t3.gg/) + Zod with server/client split; invalid variables fail early.                                                                                                                                                                                          |
+| **Forms**                        | [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) for fast, accessible forms with shared validation.                                                                                                                                                                      |
+| **API layer**                    | `apiFetch` (`ofetch` + Zod) in `src/libs/api-client.ts` defaults to same-origin `/api`; [TanStack Query](https://tanstack.com/query/latest) on the client. Example `users` feature — point at your backend or add route handlers.                                                                 |
+| **Demo mode (opt-in)**           | Self-contained `src/features/auth/demo/` module adds click-to-fill + auto-register behind `NEXT_PUBLIC_DEMO_MODE`. Turn it off (or delete the folder) for production.                                                                                                                             |
+| **Observability & protection**   | [Sentry](https://sentry.io/) instrumentation, `pino` server logging, and optional `getRateLimiter()` in `src/libs/rate-limit.ts` ([Upstash](https://upstash.com/) when `UPSTASH_REDIS_*` is set).                                                                                                 |
+| **Quality gates**                | [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/) + React Testing Library, and [Playwright](https://playwright.dev/) E2E.                                                                                                                           |
+| **DX automation**                | [Lefthook](https://github.com/evilmartians/lefthook) pre-commit, [Commitlint](https://commitlint.js.org/) commit-msg, [Knip](https://knip.dev/) dead-code/deps hygiene, [Renovate](https://docs.renovatebot.com/) dependency updates, and GitHub Actions CI.                                      |
+| **Health check**                 | `GET /api/health` returns `{ "status": "ok" }` for load balancers and probes.                                                                                                                                                                                                                     |
 
 <br/><br/>
 
 ## Lighthouse report
+
 <div align="center">
 <img src="./public/lighthouse.webp" alt="Lighthouse test results" />
 </div>
@@ -75,9 +76,9 @@ Open [http://localhost:3000](http://localhost:3000).
 
 For instant previews, the boilerplate ships with a **self-contained demo module** at `src/features/auth/demo/`. With `NEXT_PUBLIC_DEMO_MODE=true`, the login page renders a click-to-fill credentials panel and auto-registers the seed accounts in BetterAuth on first sign-in:
 
-| Role | Email | Password |
-| ---- | ----- | -------- |
-| User | `user@test.com` | `12345678` |
+| Role  | Email            | Password   |
+| ----- | ---------------- | ---------- |
+| User  | `user@test.com`  | `12345678` |
 | Admin | `admin@test.com` | `12345678` |
 
 > Going to production? Set `NEXT_PUBLIC_DEMO_MODE=false` (or delete `src/features/auth/demo/` entirely — it's the only place that imports from itself). The login form, auth provider, and RBAC stay untouched.
@@ -105,6 +106,7 @@ Or with Compose:
 ```bash
 docker compose up --build
 ```
+
 <br/><br/>
 
 ## Project Structure
@@ -168,6 +170,7 @@ docker compose up --build
 │   └── global.d.ts           next-intl type augmentation
 └── ...
 ```
+
 <br/><br/>
 
 ## Architecture Overview
@@ -235,6 +238,7 @@ const form = useForm<LoginInput>({
   defaultValues: { email: '', password: '' },
 });
 ```
+
 <br/><br/>
 
 ## Configuration
@@ -292,26 +296,27 @@ It drives:
 1. Append the role to the `UserRole` union in `src/features/auth/rbac/permissions.ts`.
 2. Map permissions for the role in `src/features/auth/rbac/roles.ts`.
 3. Optional: add a parallel route slot — `src/app/(protected)/@<role>/...` — and update `(protected)/layout.tsx` to render it based on permissions.
-<br/><br/>
+   <br/><br/>
 
 ## Available Scripts
 
-| Command | Description |
-| ------- | ----------- |
-| `npm run dev` | Start the dev server (Turbopack) |
-| `npm run build` | Production build |
-| `npm run start` | Start the production server |
-| `npm run analyze` | Build with `@next/bundle-analyzer` |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run lint` | ESLint + Prettier check |
-| `npm run lint:fix` | Auto-fix ESLint + Prettier |
-| `npm run knip` | Detect unused files / exports / dependencies |
-| `npm run check` | typecheck + lint + knip + tests (CI gate) |
-| `npm run test` | Vitest run |
-| `npm run test:watch` | Vitest watch |
-| `npm run e2e` | Playwright E2E |
-| `npm run e2e:ui` | Playwright UI mode |
-| `npm run e2e:webkit` | Playwright WebKit only |
+| Command              | Description                                  |
+| -------------------- | -------------------------------------------- |
+| `npm run dev`        | Start the dev server (Turbopack)             |
+| `npm run build`      | Production build                             |
+| `npm run start`      | Start the production server                  |
+| `npm run analyze`    | Build with `@next/bundle-analyzer`           |
+| `npm run typecheck`  | `tsc --noEmit`                               |
+| `npm run lint`       | ESLint + Prettier check                      |
+| `npm run lint:fix`   | Auto-fix ESLint + Prettier                   |
+| `npm run knip`       | Detect unused files / exports / dependencies |
+| `npm run check`      | typecheck + lint + knip + tests (CI gate)    |
+| `npm run test`       | Vitest run                                   |
+| `npm run test:watch` | Vitest watch                                 |
+| `npm run e2e`        | Playwright E2E                               |
+| `npm run e2e:ui`     | Playwright UI mode                           |
+| `npm run e2e:webkit` | Playwright WebKit only                       |
+
 <br/><br/>
 
 ## Testing
@@ -319,14 +324,14 @@ It drives:
 - **Unit / component:** Vitest + React Testing Library. Feature specs in `tests/`; colocated `*.test.ts(x)` next to components (e.g. `src/components/ui/`) and libs.
 - **End-to-end:** Playwright in `e2e/`. `npm run e2e` boots the dev server automatically; `npm run e2e:ui` is great for debugging selectors and replaying failures locally.
 - **WebKit-only setup** (saves disk space): `npx playwright install webkit && npm run e2e:webkit`.
-<br/><br/>
+  <br/><br/>
 
 ## CI/CD
 
 - `.github/workflows/check.yml` — typecheck → lint → knip → unit tests → build, on every push and PR.
 - `.github/workflows/playwright.yml` — full Playwright suite (Chromium, Firefox, WebKit).
 - `.github/renovate.json` — groups non-major dependency updates and automerges patches.
-<br/><br/>
+  <br/><br/>
 
 ## Best for
 
@@ -339,7 +344,7 @@ Probably overkill for:
 
 - Single-page landing sites
 - Apps that need a tightly-coupled DB layer (this is intentionally API-only)
-<br/><br/>
+  <br/><br/>
 
 ## Contributing
 
@@ -347,8 +352,8 @@ Probably overkill for:
 2. `npm run check` must pass locally.
 3. Use Conventional Commits — Lefthook will enforce it.
 4. Open a PR with a clear description.
-<br/><br/>
-<br/><br/>
+   <br/><br/>
+   <br/><br/>
 
 ## License
 
