@@ -1,9 +1,7 @@
 <div align="center">
+
 <h1>Next.js Elite: A production-ready Next.js boilerplate</h1>
 <p><strong>Frontend-first, API-driven, batteries included.</strong> Built on Next.js 16 + React 19, with i18n, RBAC, BetterAuth, and a polished DX out of the box.</p>
-</div>
-
-<div align="center">
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
 ![React](https://img.shields.io/badge/React-19-149eca?style=for-the-badge&logo=react)
@@ -11,30 +9,19 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwindcss)
 ![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)
 
-<br/>
-
 <img src="https://nextjs-elite-boilerplate.vercel.app/Nextjs-Elite-Boilerplate-Cover.webp" alt="Next.js Elite - Production-Ready SaaS Boilerplate" />
-
-<br/><br/>
 
 [**Live Demo** ↗](https://nextjs-elite-boilerplate.vercel.app/) · [**Use this template** ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/generate) · [Report Bug ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/issues) · [Request Feature ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/issues)
 
 <img src="https://nextjs-elite-boilerplate.vercel.app/og-image.webp" alt="Next.js Elite Boilerplate" />
 
-<br/>
-
-<h3>Lighthouse report</h3>
-<img src="./public/lighthouse.webp" alt="Lighthouse test results" />
-
 </div>
 
----
+<br/><br/>
 
 ## Why this boilerplate
 
 Most Next.js starters either ship the bare minimum or bolt on a database/ORM you don't need. **Next.js Elite is intentionally frontend-first**; it consumes APIs (REST/GraphQL/BFF) instead of owning a database, so you can drop it on top of any backend you already have.
-
-<br/>
 
 ## Integrated features
 
@@ -55,7 +42,13 @@ Most Next.js starters either ship the bare minimum or bolt on a database/ORM you
 | **DX automation**                | [Lefthook](https://github.com/evilmartians/lefthook) pre-commit, [Commitlint](https://commitlint.js.org/) commit-msg, [Knip](https://knip.dev/) dead-code/deps hygiene, [Renovate](https://docs.renovatebot.com/) dependency updates, and GitHub Actions CI.                                      |
 | **Health check**                 | `GET /api/health` returns `{ "status": "ok" }` for load balancers and probes.                                                                                                                                                                                                                     |
 
-<br/>
+<div align="center">
+
+<h3>Lighthouse report</h3>
+<img src="./public/lighthouse.webp" alt="Lighthouse test results" />
+
+</div>
+<br/><br/>
 
 ## Quick Start
 
@@ -86,8 +79,7 @@ For instant previews, the boilerplate ships with a **self-contained demo module*
 | Admin | `admin@test.com` | `12345678` |
 
 > Going to production? Set `NEXT_PUBLIC_DEMO_MODE=false` (or delete `src/features/auth/demo/` entirely — it's the only place that imports from itself). The login form, auth provider, and RBAC stay untouched.
-
-<br/>
+> <br/><br/>
 
 ## Project Structure
 
@@ -150,16 +142,6 @@ For instant previews, the boilerplate ships with a **self-contained demo module*
 │   └── global.d.ts           next-intl type augmentation
 └── ...
 ```
-
-### Folder conventions
-
-- **`features/<name>/`** — vertical slices. Anything specific to a feature lives here: components, hooks, schemas, server logic, RBAC.
-- **`libs/`** — cross-cutting infrastructure used by multiple features (env, logger, api client). No business logic.
-- **`schemas/`** — cross-cutting Zod schemas (e.g. paginated API responses) shared across features.
-- **`components/shared/`** — generic, app-level UI (logo, hero, home sections). Not feature-specific.
-- **`components/ui/`** — `shadcn/ui` primitives. Avoid editing in place; copy & extend.
-
-<br/>
 
 ## Architecture Overview
 
@@ -227,26 +209,6 @@ const form = useForm<LoginInput>({
 });
 ```
 
-### API layer (client)
-
-`src/libs/api-client.ts` builds an `ofetch` client with base URL `{NEXT_PUBLIC_APP_URL}/api` (or `/api` in the browser). Responses can be validated with Zod via `apiFetch`. The example `users` feature calls `/users` — add a matching route handler or change `baseURL` to your external API.
-
-```ts
-'use client';
-
-import { useUsers } from '@/features/users/hooks/use-users';
-
-export function UsersList() {
-  const { data, isLoading } = useUsers();
-  if (isLoading) return null;
-  return <ul>{data?.map((u) => <li key={u.id}>{u.name}</li>)}</ul>;
-}
-```
-
-`useUsers()` wraps TanStack Query with `queryFn: getUsers` from `src/features/users/api.ts`.
-
-<br/>
-
 ## Configuration
 
 ### Environment variables
@@ -303,8 +265,6 @@ It drives:
 2. Map permissions for the role in `src/features/auth/rbac/roles.ts`.
 3. Optional: add a parallel route slot — `src/app/(protected)/@<role>/...` — and update `(protected)/layout.tsx` to render it based on permissions.
 
-<br/>
-
 ## Available Scripts
 
 | Command              | Description                                  |
@@ -324,23 +284,17 @@ It drives:
 | `npm run e2e:ui`     | Playwright UI mode                           |
 | `npm run e2e:webkit` | Playwright WebKit only                       |
 
-<br/>
-
 ## Testing
 
 - **Unit / component:** Vitest + React Testing Library. Feature specs in `tests/`; colocated `*.test.ts(x)` next to components (e.g. `src/components/ui/`) and libs.
 - **End-to-end:** Playwright in `e2e/`. `npm run e2e` boots the dev server automatically; `npm run e2e:ui` is great for debugging selectors and replaying failures locally.
 - **WebKit-only setup** (saves disk space): `npx playwright install webkit && npm run e2e:webkit`.
 
-<br/>
-
 ## CI/CD
 
 - `.github/workflows/check.yml` — typecheck → lint → knip → unit tests → build, on every push and PR.
 - `.github/workflows/playwright.yml` — full Playwright suite (Chromium, Firefox, WebKit).
 - `.github/renovate.json` — groups non-major dependency updates and automerges patches.
-
-<br/>
 
 ## Deploy
 
@@ -364,8 +318,6 @@ Or with Compose:
 docker compose up --build
 ```
 
-<br/>
-
 ## Best for
 
 - SaaS apps with multiple user roles
@@ -378,8 +330,6 @@ Probably overkill for:
 - Single-page landing sites
 - Apps that need a tightly-coupled DB layer (this is intentionally API-only)
 
-<br/>
-
 ## Contributing
 
 1. Fork & branch from `main` (`feat/...`, `fix/...`, etc.)
@@ -387,13 +337,11 @@ Probably overkill for:
 3. Use Conventional Commits — Lefthook will enforce it.
 4. Open a PR with a clear description.
 
-<br/>
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
 
-<br/>
+---
 
 <div align="center">
 
