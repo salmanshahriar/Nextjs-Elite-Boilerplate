@@ -9,12 +9,12 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwindcss)
 ![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)
 
-<img src="https://nextjs-elite-boilerplate.vercel.app/Nextjs-Elite-Boilerplate-Cover.webp" alt="Next.js Elite - Production-Ready SaaS Boilerplate" />
+<img src="https://nextjs-elite-boilerplate.vercel.app/Nextjs-Elite-Cover.webp" alt="Next.js Elite - Production-Ready SaaS Boilerplate" />
 <br/><br/>
 
 [**Live Demo** ↗](https://nextjs-elite-boilerplate.vercel.app/) · [**Use this template** ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/generate) · [Report Bug ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/issues) · [Request Feature ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/issues)
 
-<img src="https://nextjs-elite-boilerplate.vercel.app/og-image.webp" alt="Next.js Elite Boilerplate" />
+<img src="https://nextjs-elite-boilerplate.vercel.app/Nextjs-Elite-OG-Image.webp" alt="Next.js Elite Boilerplate" />
 
 </div>
 <br/><br/>
@@ -57,7 +57,7 @@ Most Next.js starters either ship the bare minimum or bolt on a database/ORM you
 
 ### Prerequisites
 
-- Node.js **20.9** or later
+- Node.js **22.12** or later
 - npm / pnpm / yarn / bun
 
 ### Install & run
@@ -278,7 +278,10 @@ It drives:
     "name": "Your Organization",
     "url": "https://yourdomain.com",
   },
-  "images": { "og": "/og-image.webp" },
+  "images": {
+    "og": "/Nextjs-Elite-OG-Image.webp",
+    "cover": "/Nextjs-Elite-Cover.webp",
+  },
   "manifest": "/manifest.webmanifest",
 }
 ```

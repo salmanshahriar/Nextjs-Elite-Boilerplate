@@ -117,7 +117,8 @@
     "linkedin": "https://linkedin.com/company/yourcompany"
   },
   "images": {
-    "og": "/og-image.webp",
+    "og": "/Nextjs-Elite-OG-Image.webp",
+    "cover": "/Nextjs-Elite-Cover.webp",
     "logo": "/logo.svg",
     "ogWidth": 1200,
     "ogHeight": 630
@@ -127,7 +128,10 @@
     "svg": "/icon.svg",
     "appleTouchIcon": "/apple-touch-icon.png"
   },
-  "theme": { "dark": "#0a0a0a", "light": "#ffffff" },
+  "theme": {
+    "dark": "#0a0a0a",
+    "light": "#ffffff"
+  },
   "pricing": {
     "model": "freemium",
     "currency": "USD",

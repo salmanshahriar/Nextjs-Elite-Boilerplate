@@ -1,10 +1,10 @@
 {
   "name": "nextjs-elite-boilerplate",
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=20.9"
+    "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "next dev",
@@ -56,7 +56,7 @@
   "devDependencies": {
     "@commitlint/cli": "^21.0.2",
     "@commitlint/config-conventional": "^21.0.2",
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^9.39.4",
     "@next/bundle-analyzer": "16.2.6",
     "@playwright/test": "1.60.0",
     "@tailwindcss/postcss": "4.3.0",
@@ -66,7 +66,7 @@
     "@types/react": "19.2.15",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.4",
     "eslint-config-next": "16.2.6",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-unicorn": "^64.0.0",

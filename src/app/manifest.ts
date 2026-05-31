@@ -26,7 +26,7 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         src: siteConfig.images.og,
         sizes: '1200x630',
-        type: 'image/png',
+        type: 'image/webp',
         purpose: 'any',
       },
       {

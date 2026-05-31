@@ -22,9 +22,9 @@
       "purpose": "any"
     },
     {
-      "src": "/og-image.png",
+      "src": "/Nextjs-Elite-OG-Image.webp",
       "sizes": "1200x630",
-      "type": "image/png",
+      "type": "image/webp",
       "purpose": "any"
     },
     {
@@ -36,8 +36,8 @@
   ],
   "screenshots": [
     {
-      "src": "/og-image.png",
-      "type": "image/png",
+      "src": "/Nextjs-Elite-OG-Image.webp",
+      "type": "image/webp",
       "sizes": "1200x630",
       "form_factor": "wide",
       "label": "Next.js Boilerplate"
@@ -58,4 +58,3 @@
     }
   ]
 }
-
