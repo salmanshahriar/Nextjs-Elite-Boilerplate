@@ -5,8 +5,10 @@
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
 ![React](https://img.shields.io/badge/React-19-149eca?style=for-the-badge&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=for-the-badge&logo=typescript)
+![TypeScript](https://img.shields.io/badge/TypeScript-6-3178c6?style=for-the-badge&logo=typescript)
+![Node.js](https://img.shields.io/badge/Node.js-22-5fa04e?style=for-the-badge&logo=nodedotjs)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwindcss)
+![Zod](https://img.shields.io/badge/Zod-4-3e67b1?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)
 
 <img src="https://nextjs-elite-boilerplate.vercel.app/Nextjs-Elite-Cover.webp" alt="Next.js Elite - Production-Ready SaaS Boilerplate" />
@@ -35,12 +37,12 @@ Most Next.js starters either ship the bare minimum or bolt on a database/ORM you
 | **Central site config**          | Single [`src/features/site/site.config.json`](src/features/site/site.config.json) drives app name, SEO, languages, organization, theme, social meta, sitemap, robots, and `manifest.webmanifest`.                                                                                                 |
 | **SEO that scales**              | Open Graph, Twitter Cards, JSON-LD, canonical URLs, language alternates, dynamic sitemap + robots — driven from the central config.                                                                                                                                                               |
 | **Type-safe env**                | [`@t3-oss/env-nextjs`](https://env.t3.gg/) + Zod with server/client split; invalid variables fail early.                                                                                                                                                                                          |
-| **Forms**                        | [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) for fast, accessible forms with shared validation.                                                                                                                                                                      |
+| **Forms**                        | [React Hook Form](https://react-hook-form.com/) + [Zod 4](https://zod.dev/) for fast, accessible forms with shared validation.                                                                                                                                                                    |
 | **API layer**                    | `apiFetch` (`ofetch` + Zod) in `src/libs/api-client.ts` defaults to same-origin `/api`; [TanStack Query](https://tanstack.com/query/latest) on the client. Example `users` feature — point at your backend or add route handlers.                                                                 |
 | **Demo mode (opt-in)**           | Self-contained `src/features/auth/demo/` module adds click-to-fill + auto-register behind `NEXT_PUBLIC_DEMO_MODE`. Turn it off (or delete the folder) for production.                                                                                                                             |
 | **Observability & protection**   | [Sentry](https://sentry.io/) instrumentation, `pino` server logging, and optional `getRateLimiter()` in `src/libs/rate-limit.ts` ([Upstash](https://upstash.com/) when `UPSTASH_REDIS_*` is set).                                                                                                 |
-| **Quality gates**                | [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/) + React Testing Library, and [Playwright](https://playwright.dev/) E2E.                                                                                                                           |
-| **DX automation**                | [Lefthook](https://github.com/evilmartians/lefthook) pre-commit, [Commitlint](https://commitlint.js.org/) commit-msg, [Knip](https://knip.dev/) dead-code/deps hygiene, [Renovate](https://docs.renovatebot.com/) dependency updates, and GitHub Actions CI.                                      |
+| **Quality gates**                | [ESLint 9](https://eslint.org/) + [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/) + React Testing Library, and [Playwright](https://playwright.dev/) E2E.                                                                                                                         |
+| **DX automation**                | [Lefthook](https://github.com/evilmartians/lefthook) pre-commit, [Commitlint 21](https://commitlint.js.org/) commit-msg, [Knip](https://knip.dev/) dead-code/deps hygiene, [Renovate](https://docs.renovatebot.com/) dependency updates, and GitHub Actions CI (Node 22 + npm 11).                |
 | **Health check**                 | `GET /api/health` returns `{ "status": "ok" }` for load balancers and probes.                                                                                                                                                                                                                     |
 
 <br/><br/>
@@ -58,13 +60,14 @@ Most Next.js starters either ship the bare minimum or bolt on a database/ORM you
 ### Prerequisites
 
 - Node.js **22.12** or later
-- npm / pnpm / yarn / bun
+- **npm 11**
 
 ### Install & run
 
 ```bash
 git clone https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate.git
 cd Nextjs-Elite-Boilerplate
+npm ci
 npm install
 cp .env.example .env
 npm run dev
@@ -94,6 +97,8 @@ For instant previews, the boilerplate ships with a **self-contained demo module*
 Set the env vars from `.env.example` in your Vercel project (Production + Preview).
 
 ### Docker
+
+Runs on **Node 22 Alpine** (`Dockerfile`). Build and run:
 
 ```bash
 cp .env.example .env
@@ -126,6 +131,7 @@ docker compose up --build
 ├── knip.json
 ├── next.config.mjs
 ├── package.json              scripts; Prettier + Commitlint config
+├── package-lock.json         npm lockfile (single source of truth)
 ├── proxy.ts                  Next.js middleware (pass-through)
 ├── tsconfig.json
 ├── lefthook.yml              Git hooks (pre-commit, commit-msg)
@@ -269,7 +275,7 @@ It drives:
   "domain": "https://yourdomain.com",
   "tagline": "Frontend-first, API-driven, batteries included.",
   "title": "Next.js Elite — Production-Ready SaaS Boilerplate",
-  "description": "Frontend-first Next.js 16 + React 19 boilerplate with i18n, RBAC and BetterAuth.",
+  "description": "Frontend-first Next.js 16 + React 19 + TypeScript 6 boilerplate with i18n, RBAC and BetterAuth.",
   "languages": {
     "supported": ["en", "bn", "ar", "fr", "es", "zh"],
     "default": "en",
