@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>Next.js Elite: A production-ready Next.js boilerplate</h1>
+<h1>Next Elite: A production-ready Next.js boilerplate</h1>
 <p><strong>Frontend-first, API-driven, batteries included.</strong> Built on Next.js 16 + React 19, with i18n, RBAC, BetterAuth, and a polished DX out of the box.</p>
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
