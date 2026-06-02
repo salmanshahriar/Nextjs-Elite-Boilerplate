@@ -9,9 +9,9 @@ import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 
 const deployUrl =
-  'https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate';
+  'https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Next-Elite';
 
-const repoUrl = 'https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate';
+const repoUrl = 'https://github.com/salmanshahriar/Next-Elite';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const t = await getTranslations();
@@ -39,13 +39,13 @@ const AboutPage = async () => {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <Card className="shadow-sm">
           <CardHeader>
-            <CardTitle>What is Next.js Elite?</CardTitle>
+            <CardTitle>What is Next Elite?</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-sm text-muted-foreground">
             <p>
-              Next.js Elite is a frontend-first boilerplate for teams that
-              already have or plan to build an API. You get Next.js 16, React
-              19, Tailwind v4, and shadcn/ui without a forced database layer.
+              Next Elite is a frontend-first boilerplate for teams that already
+              have or plan to build an API. You get Next.js 16, React 19,
+              Tailwind v4, and shadcn/ui without a forced database layer.
             </p>
             <p>
               Auth, RBAC, i18n, SEO, and quality tooling are included so you can

@@ -3,9 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getLocaleDirection, type Locale } from '@/features/site/config';
 
 const deployUrl =
-  'https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate';
+  'https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Next-Elite';
 
-const repoUrl = 'https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate';
+const repoUrl = 'https://github.com/salmanshahriar/Next-Elite';
 
 const HeroSection = async ({ locale }: { locale: Locale }) => {
   const isRtl = getLocaleDirection(locale) === 'rtl';
@@ -139,7 +139,7 @@ const HeroSection = async ({ locale }: { locale: Locale }) => {
       <div className="flex flex-col items-center gap-6 text-center">
         <div>
           <h1 className="bg-linear-to-r from-primary to-primary/60 bg-clip-text text-5xl font-bold text-transparent">
-            Next.js Elite
+            Next Elite
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-xl leading-relaxed text-muted-foreground sm:text-2xl">
             Frontend-first, API-driven Next.js 16 boilerplate with i18n, RBAC,

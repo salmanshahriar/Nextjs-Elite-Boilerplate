@@ -7,13 +7,13 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 const deployUrl =
-  'https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate';
+  'https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Next-Elite';
 
-const repoUrl = 'https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate';
+const repoUrl = 'https://github.com/salmanshahriar/Next-Elite';
 
 const installLines = [
   `git clone ${repoUrl}`,
-  'cd Nextjs-Elite-Boilerplate',
+  'cd Next-Elite',
   'npm install',
   'cp .env.example .env',
   'npm run dev',

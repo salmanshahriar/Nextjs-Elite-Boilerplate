@@ -11,19 +11,19 @@
 ![Zod](https://img.shields.io/badge/Zod-4-3e67b1?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)
 
-<img src="https://nextjs-elite-boilerplate.vercel.app/Nextjs-Elite-Cover.webp" alt="Next.js Elite - Production-Ready SaaS Boilerplate" />
+<img src="https://next-elite-boilerplate.vercel.app/Nextjs-Elite-Cover.webp" alt="Next Elite - Production-Ready SaaS Boilerplate" />
 <br/><br/>
 
-[**Live Demo** ↗](https://nextjs-elite-boilerplate.vercel.app/) · [**Use this template** ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/generate) · [Report Bug ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/issues) · [Request Feature ↗](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/issues)
+[**Live Demo** ↗](https://next-elite-boilerplate.vercel.app/) · [**Use this template** ↗](https://github.com/salmanshahriar/Next-Elite/generate) · [Report Bug ↗](https://github.com/salmanshahriar/Next-Elite/issues) · [Request Feature ↗](https://github.com/salmanshahriar/Next-Elite/issues)
 
-<img src="https://nextjs-elite-boilerplate.vercel.app/Nextjs-Elite-OG-Image.webp" alt="Next.js Elite Boilerplate" />
+<img src="https://next-elite-boilerplate.vercel.app/Nextjs-Elite-OG-Image.webp" alt="Next Elite Boilerplate" />
 
 </div>
 <br/><br/>
 
 ## Why this boilerplate
 
-Most Next.js starters either ship the bare minimum or bolt on a database/ORM you don't need. **Next.js Elite is intentionally frontend-first**; it consumes APIs (REST/GraphQL/BFF) instead of owning a database, so you can drop it on top of any backend you already have.
+Most Next.js starters either ship the bare minimum or bolt on a database/ORM you don't need. **Next Elite is intentionally frontend-first**; it consumes APIs (REST/GraphQL/BFF) instead of owning a database, so you can drop it on top of any backend you already have.
 <br/><br/>
 
 ## Integrated features
@@ -65,8 +65,8 @@ Most Next.js starters either ship the bare minimum or bolt on a database/ORM you
 ### Install & run
 
 ```bash
-git clone https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate.git
-cd Nextjs-Elite-Boilerplate
+git clone https://github.com/salmanshahriar/Next-Elite.git
+cd Next-Elite
 npm install
 cp .env.example .env
 npm run dev
@@ -91,7 +91,7 @@ For instant previews, the boilerplate ships with a **self-contained demo module*
 
 ### Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Next-Elite)
 
 Set the env vars from `.env.example` in your Vercel project (Production + Preview).
 
@@ -101,8 +101,8 @@ Runs on **Node 22 Alpine** (`Dockerfile`). Build and run:
 
 ```bash
 cp .env.example .env
-docker build -t nextjs-elite-boilerplate .
-docker run --rm --env-file .env -p 3000:3000 nextjs-elite-boilerplate
+docker build -t next-elite .
+docker run --rm --env-file .env -p 3000:3000 next-elite
 ```
 
 Or with Compose:
@@ -270,11 +270,11 @@ It drives:
 
 ```jsonc
 {
-  "appName": "Next.js Elite",
+  "appName": "Next Elite",
   "domain": "https://yourdomain.com",
   "tagline": "Frontend-first, API-driven, batteries included.",
-  "title": "Next.js Elite — Production-Ready SaaS Boilerplate",
-  "description": "Frontend-first Next.js 16 + React 19 + TypeScript 6 boilerplate with i18n, RBAC and BetterAuth.",
+  "title": "Next Elite — Production-Ready SaaS Boilerplate",
+  "description": "Frontend-first Next.js 16 + React 19 boilerplate with i18n, RBAC and BetterAuth.",
   "languages": {
     "supported": ["en", "bn", "ar", "fr", "es", "zh"],
     "default": "en",
@@ -373,8 +373,8 @@ MIT — see [LICENSE](LICENSE).
 
 ### If this boilerplate saved you time, a star helps more devs discover it
 
-[![GitHub stars](https://img.shields.io/github/stars/salmanshahriar/Nextjs-Elite-Boilerplate?style=social)](https://github.com/salmanshahriar/Nextjs-Elite-Boilerplate/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/salmanshahriar/Next-Elite?style=social)](https://github.com/salmanshahriar/Next-Elite/stargazers)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=salmanshahriar/Nextjs-Elite-Boilerplate&type=date&legend=bottom-right)](https://www.star-history.com/#salmanshahriar/Nextjs-Elite-Boilerplate&type=date&legend=bottom-right)
+[![Star History Chart](https://api.star-history.com/svg?repos=salmanshahriar/Next-Elite&type=date&legend=bottom-right)](https://www.star-history.com/#salmanshahriar/Next-Elite&type=date&legend=bottom-right)
 
 </div>
