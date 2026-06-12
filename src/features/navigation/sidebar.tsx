@@ -66,7 +66,7 @@ interface SidebarContentProps {
 }
 
 function SidebarContent({
-  _user,
+  user: _user,
   pathname,
   isRtl,
   menuItems,
