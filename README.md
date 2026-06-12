@@ -1,60 +1,112 @@
+<a href="https://next-elite-boilerplate.vercel.app/">
+  <img alt="Next Elite - Production-Ready SaaS Boilerplate" src="https://next-elite-boilerplate.vercel.app/Nextjs-Elite-OG-Image.webp" />
+  <h1 align="center">Next Elite</h1>
+</a>
+
+<p align="center">
+  A production-ready, frontend-first Next.js boilerplate with i18n, RBAC, BetterAuth, and a polished DX out of the box.
+</p>
+
+<p align="center">
+  <a href="https://github.com/salmanshahriar/Next-Elite">
+    <img src="https://img.shields.io/github/stars/salmanshahriar/Next-Elite?label=salmanshahriar%2FNext-Elite" alt="Next Elite repo star count" />
+  </a>
+  <a href="https://github.com/salmanshahriar/Next-Elite/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/salmanshahriar/Next-Elite?color=22c55e" alt="Next Elite License" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://next-elite-boilerplate.vercel.app/"><strong>Live Demo</strong></a> ·
+  <a href="https://github.com/salmanshahriar/Next-Elite/generate"><strong>Use this Template</strong></a> ·
+  <a href="https://github.com/salmanshahriar/Next-Elite/issues"><strong>Report Bug</strong></a> ·
+  <a href="https://github.com/salmanshahriar/Next-Elite/issues"><strong>Request Feature</strong></a>
+</p>
+
+<p align="center">
+  <a href="#introduction"><strong>Introduction</strong></a> ·
+  <a href="#one-click-deploy"><strong>One-click Deploy</strong></a> ·
+  <a href="#tech-stack--features"><strong>Tech Stack + Features</strong></a> ·
+  <a href="#quick-start"><strong>Quick Start</strong></a> ·
+  <a href="#architecture-overview"><strong>Architecture Overview</strong></a> ·
+  <a href="#configuration"><strong>Configuration</strong></a>
+</p>
+<br/>
+
+## Introduction
+
+Next Elite is an opinionated, frontend-first Next.js boilerplate designed to consume APIs (REST/GraphQL/BFF) instead of owning a database, allowing you to drop it on top of any backend you already have.
+
+It is feature-based, offering a polished developer experience (DX), built-in role-based access control (RBAC), type-safe internationalization (i18n), and is optimized for speed, SEO, and developer productivity.
+
+<br/>
+
 <div align="center">
-
-<h1>Next Elite: A production-ready Next.js boilerplate</h1>
-<p><strong>Frontend-first, API-driven, batteries included.</strong> Built on Next.js 16 + React 19, with i18n, RBAC, BetterAuth, and a polished DX out of the box.</p>
-
-![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
-![React](https://img.shields.io/badge/React-19-149eca?style=for-the-badge&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-6-3178c6?style=for-the-badge&logo=typescript)
-![Node.js](https://img.shields.io/badge/Node.js-22-5fa04e?style=for-the-badge&logo=nodedotjs)
-![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwindcss)
-![Zod](https://img.shields.io/badge/Zod-4-3e67b1?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)
-
-[**Live Demo** ↗](https://next-elite-boilerplate.vercel.app/) · [**Use this template** ↗](https://github.com/salmanshahriar/Next-Elite/generate) · [Report Bug ↗](https://github.com/salmanshahriar/Next-Elite/issues) · [Request Feature ↗](https://github.com/salmanshahriar/Next-Elite/issues)
-<br/><br/>
-
-<img src="https://next-elite-boilerplate.vercel.app/Nextjs-Elite-OG-Image.webp" alt="Next Elite - Production-Ready SaaS Boilerplate" />
-<br/><br/>
-
-<img src="https://next-elite-boilerplate.vercel.app/Nextjs-Elite-UI-Image.webp" alt="Next Elite Boilerplate" />
-
+  <img src="https://next-elite-boilerplate.vercel.app/Nextjs-Elite-UI-Image.webp" alt="Next Elite Boilerplate UI" />
 </div>
-<br/><br/>
 
-## Why this boilerplate
+<br/>
 
-Most Next.js starters either ship the bare minimum or bolt on a database/ORM you don't need. **Next Elite is intentionally frontend-first**; it consumes APIs (REST/GraphQL/BFF) instead of owning a database, so you can drop it on top of any backend you already have.
-<br/><br/>
+## One-click Deploy
 
-## Integrated features
+You can deploy this template to Vercel with the button below:
 
-| Feature                          | Description                                                                                                                                                                                                                                                                                       |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Auth (BetterAuth)**            | Email/password with optional Google OAuth via `/api/auth/*`. Admin role via `AUTH_ADMIN_EMAILS` / `NEXT_PUBLIC_AUTH_ADMIN_EMAILS`. Sessions use BetterAuth defaults (plug in your own storage adapter for multi-instance prod).                                                                   |
-| **RBAC + role-based routing**    | Permission-based RBAC (`user`, `admin`) with server-side guards (`requireUser`, `requirePermission`) for Server Components, paired with [parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) (`@admin`, `@user`) so `/dashboard` stays role-agnostic. |
-| **Type-safe i18n (6 languages)** | [`next-intl`](https://next-intl.dev/) with **cookie-based locale** (no URL prefix) for English, বাংলা, العربية (RTL), Français, Español, and 简体中文. Keys are type-checked (`t("navigation.home")` works; typos fail compile-time).                                                             |
-| **UI kit**                       | [shadcn/ui](https://ui.shadcn.com/) (Radix + CVA + Tailwind) with copy-and-own components.                                                                                                                                                                                                        |
-| **Central site config**          | Single [`src/features/site/site.config.json`](src/features/site/site.config.json) drives app name, SEO, languages, organization, theme, social meta, sitemap, robots, and `manifest.webmanifest`.                                                                                                 |
-| **SEO that scales**              | Open Graph, Twitter Cards, JSON-LD, canonical URLs, language alternates, dynamic sitemap + robots — driven from the central config.                                                                                                                                                               |
-| **Type-safe env**                | [`@t3-oss/env-nextjs`](https://env.t3.gg/) + Zod with server/client split; invalid variables fail early.                                                                                                                                                                                          |
-| **Forms**                        | [React Hook Form](https://react-hook-form.com/) + [Zod 4](https://zod.dev/) for fast, accessible forms with shared validation.                                                                                                                                                                    |
-| **API layer**                    | `apiFetch` (`ofetch` + Zod) in `src/libs/api-client.ts` defaults to same-origin `/api`; [TanStack Query](https://tanstack.com/query/latest) on the client. Example `users` feature — point at your backend or add route handlers.                                                                 |
-| **Demo mode (opt-in)**           | Self-contained `src/features/auth/demo/` module adds click-to-fill + auto-register behind `NEXT_PUBLIC_DEMO_MODE`. Turn it off (or delete the folder) for production.                                                                                                                             |
-| **Observability & protection**   | [Sentry](https://sentry.io/) instrumentation, `pino` server logging, and optional `getRateLimiter()` in `src/libs/rate-limit.ts` ([Upstash](https://upstash.com/) when `UPSTASH_REDIS_*` is set).                                                                                                 |
-| **Quality gates**                | [ESLint 9](https://eslint.org/) + [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/) + React Testing Library, and [Playwright](https://playwright.dev/) E2E.                                                                                                                         |
-| **DX automation**                | [Lefthook](https://github.com/evilmartians/lefthook) pre-commit, [Commitlint 21](https://commitlint.js.org/) commit-msg, [Knip](https://knip.dev/) dead-code/deps hygiene, [Renovate](https://docs.renovatebot.com/) dependency updates, and GitHub Actions CI (Node 22 + npm 11).                |
-| **Health check**                 | `GET /api/health` returns `{ "status": "ok" }` for load balancers and probes.                                                                                                                                                                                                                     |
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Next-Elite)
 
-<br/><br/>
+Set the environment variables from `.env.example` in your Vercel project (Production + Preview).
+
+<br/>
+
+## Tech Stack + Features
+
+### Frameworks & Core
+
+- **Next.js 16 (App Router)** - Fast, modern React framework with full support for React 19 features (Server/Client components, Server Actions).
+- **TypeScript 6** - End-to-end type safety for rock-solid refactoring and developer experience.
+- **Node.js 22** - Built on the latest LTS runtime.
+- **Feature-Based Architecture** - Structured around self-contained vertical slices/feature folders under `src/features/` for maximum modularity and clean separation of concerns.
+
+### Authentication & Access Control
+
+- **BetterAuth** - Out-of-the-box email/password and OAuth (Google) authentication using `/api/auth/*` route handlers. Configure admin emails via `AUTH_ADMIN_EMAILS` or `NEXT_PUBLIC_AUTH_ADMIN_EMAILS`.
+- **Role-Based Access Control (RBAC)** - Flexible RBAC (`user` and `admin` roles) with server-side guards (`requireUser`, `requirePermission`) and parallel route slots (`@admin`, `@user`) for role-agnostic routing.
+
+### Internationalization (i18n)
+
+- **next-intl** - Type-safe, cookie-based localizations (no URL prefix) with support for English, বাংলা, العربية (RTL), Français, Español, and 简体中文. Translation keys are type-checked (`t("key")` works; typos fail compile-time).
+
+### UI & Styling
+
+- **shadcn/ui** - Highly customizable UI components built with Tailwind CSS, Radix UI, and CVA.
+- **Theme Support** - Easy light/dark mode transitions via theme toggle.
+
+### API & Data Fetching
+
+- **TanStack Query (React Query)** - Powerful client-side state management, caching, and data synchronization.
+- **apiFetch Client** - A custom Zod-validated `ofetch` wrapper in `src/libs/api-client.ts` supporting type-safe queries and mutations. Includes a complete `users` example feature.
+
+### Observability & Infrastructure
+
+- **Sentry Integration** - Complete error tracking and performance instrumentation for client and server.
+- **Logging** - Clean, fast server-side logging using `pino`.
+- **Rate Limiting** - Optional rate-limiting helper using Upstash Redis.
+- **Health Probes** - Direct `GET /api/health` endpoint for load balancers.
+
+### Quality Gates & Tooling
+
+- **Testing Suite** - Unit/component testing with Vitest and React Testing Library, and E2E testing with Playwright.
+- **Hygiene & Linting** - ESLint 9, Prettier formatting, and Knip for dead code/dependency hygiene.
+- **Git Hook Automation** - Lefthook pre-commit hooks and Commitlint to maintain codebase quality.
+
+<br/>
 
 ## Lighthouse report
 
 <div align="center">
-<img src="./public/lighthouse.webp" alt="Lighthouse test results" />
+  <img src="./public/lighthouse.webp" alt="Lighthouse test results" width="600" />
 </div>
 
-<br/><br/>
+<br/>
 
 ## Quick Start
 
@@ -63,42 +115,43 @@ Most Next.js starters either ship the bare minimum or bolt on a database/ORM you
 - Node.js **22.12** or later
 - **npm**
 
-### Install & run
+### Local Setup
 
-```bash
-git clone https://github.com/salmanshahriar/Next-Elite.git
-cd Next-Elite
-npm install
-cp .env.example .env
-npm run dev
-```
+1. Clone the repository and navigate into it:
+   ```bash
+   git clone https://github.com/salmanshahriar/Next-Elite.git
+   cd Next-Elite
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up your environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) to view your local instance.
 
-### Demo login
+### Demo Credentials
 
-For instant previews, the boilerplate ships with a **self-contained demo module** at `src/features/auth/demo/`. With `NEXT_PUBLIC_DEMO_MODE=true`, the login page renders a click-to-fill credentials panel and auto-registers the seed accounts in BetterAuth on first sign-in:
+When `NEXT_PUBLIC_DEMO_MODE=true` is enabled, the login screen includes a quick-fill panel with these seed credentials:
 
 | Role  | Email            | Password   |
 | ----- | ---------------- | ---------- |
 | User  | `user@test.com`  | `12345678` |
 | Admin | `admin@test.com` | `12345678` |
 
-> Going to production? Set `NEXT_PUBLIC_DEMO_MODE=false` (or delete `src/features/auth/demo/` entirely — it's the only place that imports from itself). The login form, auth provider, and RBAC stay untouched.
+> [!NOTE]
+> For production deployments, set `NEXT_PUBLIC_DEMO_MODE=false` or remove the self-contained `src/features/auth/demo/` module.
 
-<br/><br/>
+### Docker Setup
 
-## Deploy
-
-### Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/salmanshahriar/Next-Elite)
-
-Set the env vars from `.env.example` in your Vercel project (Production + Preview).
-
-### Docker
-
-Runs on **Node 22 Alpine** (`Dockerfile`). Build and run:
+Run the application locally via Docker:
 
 ```bash
 cp .env.example .env
@@ -106,15 +159,103 @@ docker build -t next-elite .
 docker run --rm --env-file .env -p 3000:3000 next-elite
 ```
 
-Or with Compose:
+Or using Docker Compose:
 
 ```bash
 docker compose up --build
 ```
 
-<br/><br/>
+<br/>
+
+## Architecture Overview
+
+The big picture: a page is rendered on the server, auth/role is checked there, and any live data is fetched on the client.
+
+```mermaid
+flowchart TB
+    User([User]) --> Page
+
+    subgraph Server["Server (runs first)"]
+        Page[Page / Layout]
+        Guard["requireUser() / requirePermission()"]
+        Page --> Guard
+        Guard -->|reads session + role| Auth[BetterAuth]
+    end
+
+    subgraph Client["Client (runs in browser)"]
+        Hook["useQuery (TanStack Query)"]
+        Hook -->|apiFetch| Api["/api or your backend URL"]
+    end
+
+    Page -->|sends HTML| User
+    Page -.->|interactive parts| Hook
+
+    classDef userNode fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#064e3b;
+    classDef serverNode fill:#f8fafc,stroke:#64748b,stroke-width:2px,color:#334155;
+    classDef securityNode fill:#fef2f2,stroke:#ef4444,stroke-width:2px,color:#7f1d1d;
+    classDef authNode fill:#fffbeb,stroke:#f59e0b,stroke-width:2px,color:#78350f;
+    classDef hookNode fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a;
+    classDef apiNode fill:#fdf4ff,stroke:#d946ef,stroke-width:2px,color:#701a75;
+
+    class User userNode;
+    class Page serverNode;
+    class Guard securityNode;
+    class Auth authNode;
+    class Hook hookNode;
+    class Api apiNode;
+
+    style Server fill:none,stroke:#cbd5e1,stroke-width:1px
+    style Client fill:none,stroke:#cbd5e1,stroke-width:1px
+```
+
+**How a request flows:**
+
+1. **User opens a page** — the Server Component renders first.
+2. **Auth + role check** — `requireUser()` / `requirePermission()` read the BetterAuth session and redirect to `/login` or `/unauthorized` if needed.
+3. **HTML is sent** to the browser; translations come from `messages/` via `next-intl`.
+4. **Live data** (lists, forms, etc.) is fetched on the client with TanStack Query → `apiFetch` → your API.
+
+<details>
+<summary><b>View Auth & RBAC Usage</b></summary>
+
+```ts
+// Server Component example
+import { requirePermission } from '@/features/auth/rbac/require';
+
+const AdminDashboardPage = async () => {
+  const user = await requirePermission('dashboard.view:admin');
+  return <h1>Welcome {user.email}</h1>;
+};
+
+export default AdminDashboardPage;
+```
+
+</details>
+
+<details>
+<summary><b>View Forms Usage (React Hook Form + Zod)</b></summary>
+
+```tsx
+'use client';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { loginSchema, type LoginInput } from '@/features/auth/schemas/login';
+
+const form = useForm<LoginInput>({
+  resolver: zodResolver(loginSchema),
+  defaultValues: { email: '', password: '' },
+});
+```
+
+</details>
+
+<br/>
 
 ## Project Structure
+
+<details>
+<summary><b>View Directory Structure</b></summary>
 
 ```
 .
@@ -177,81 +318,15 @@ docker compose up --build
 └── ...
 ```
 
-<br/><br/>
+</details>
 
-## Architecture Overview
-
-The big picture: a page is rendered on the server, auth/role is checked there, and any live data is fetched on the client.
-
-```mermaid
-flowchart TB
-    User([User]) --> Page
-
-    subgraph Server["Server (runs first)"]
-        Page[Page / Layout]
-        Guard["requireUser() / requirePermission()"]
-        Page --> Guard
-        Guard -->|reads session + role| Auth[BetterAuth]
-    end
-
-    subgraph Client["Client (runs in browser)"]
-        Hook["useQuery (TanStack Query)"]
-        Hook -->|apiFetch| Api["/api or your backend URL"]
-    end
-
-    Page -->|sends HTML| User
-    Page -.->|interactive parts| Hook
-```
-
-**How a request flows:**
-
-1. **User opens a page** — the Server Component renders first.
-2. **Auth + role check** — `requireUser()` / `requirePermission()` read the BetterAuth session and redirect to `/login` or `/unauthorized` if needed.
-3. **HTML is sent** to the browser; translations come from `messages/` via `next-intl`.
-4. **Live data** (lists, forms, etc.) is fetched on the client with TanStack Query → `apiFetch` → your API.
-
-> Optional add-ons: **Sentry** for error tracking and **Upstash Redis** for the rate-limit helper — both activate only when their env vars are set.
-
-### Auth & RBAC
-
-- BetterAuth runs as a **singleton** in `src/features/auth/lib/auth.ts` and is exposed at **`/api/auth/*`** via `src/app/api/auth/[...all]/route.ts`. Sessions use BetterAuth's **default storage**; add a database or Redis adapter when you need durable or multi-instance sessions.
-- `getCurrentUser()` reads the session, maps `AUTH_ADMIN_EMAILS` to a role, and attaches permissions. Server Components call `requireUser()` / `requirePermission(...)` from `src/features/auth/rbac/require.ts` — invalid sessions redirect to `/login`, unauthorized users to `/unauthorized`.
-- Permissions are defined in `rbac/roles.ts` and checked with `hasPermission(...)` from `rbac/can.ts`. Extend the `AuthPermission` union and `ROLE_PERMISSIONS` map as your feature surface grows.
-
-```ts
-// Server Component example
-import { requirePermission } from '@/features/auth/rbac/require';
-
-const AdminDashboardPage = async () => {
-  const user = await requirePermission('dashboard.view:admin');
-  return <h1>Welcome {user.email}</h1>;
-};
-
-export default AdminDashboardPage;
-```
-
-### Forms with React Hook Form + Zod
-
-```tsx
-'use client';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { loginSchema, type LoginInput } from '@/features/auth/schemas/login';
-
-const form = useForm<LoginInput>({
-  resolver: zodResolver(loginSchema),
-  defaultValues: { email: '', password: '' },
-});
-```
-
-<br/><br/>
+<br/>
 
 ## Configuration
 
 ### Environment variables
 
-Every variable is documented in [`.env.example`](.env.example) and validated by `src/libs/env.ts` (T3 Env), so invalid values fail fast. A few notes:
+Every variable is documented in [`.env.example`](.env.example) and validated by `src/libs/env.ts` (T3 Env).
 
 - `BETTER_AUTH_URL` is optional — derived from `VERCEL_URL` in production, `http://localhost:3000` locally.
 - `BETTER_AUTH_SECRET` (32+ chars) must be set at runtime in production. A missing secret logs a warning instead of crashing the build.
@@ -259,55 +334,40 @@ Every variable is documented in [`.env.example`](.env.example) and validated by 
 
 ### Site & SEO configuration
 
-[`src/features/site/site.config.json`](src/features/site/site.config.json) is the single source of truth for app name, SEO meta, social cards, JSON-LD organization schema, supported locales, theme colors, and PWA manifest. The config is parsed at build time through a Zod schema in [`src/features/site/config.ts`](src/features/site/config.ts), so a typo or missing field fails fast.
+[`src/features/site/site.config.json`](src/features/site/site.config.json) is the single source of truth for SEO metadata, dynamic sitemaps, localized routes, and PWA manifest:
 
-It drives:
-
-- `src/app/layout.tsx` — root `<head>`, OpenGraph, Twitter Cards, JSON-LD `Organization` + `WebSite` schema, language alternates, theme color
-- `src/app/sitemap.ts` — dynamic sitemap with all locales
-- `src/app/robots.ts` — robots.txt
-- `src/app/manifest.ts` — PWA web app manifest
-- `next-intl` — supported locales and default locale
-
-```jsonc
+```json
 {
   "appName": "Next Elite",
   "domain": "https://yourdomain.com",
   "tagline": "Frontend-first, API-driven, batteries included.",
   "title": "Next Elite — Production-Ready SaaS Boilerplate",
-  "description": "Frontend-first Next.js 16 + React 19 boilerplate with i18n, RBAC and BetterAuth.",
-  "languages": {
-    "supported": ["en", "bn", "ar", "fr", "es", "zh"],
-    "default": "en",
-  },
-  "organization": {
-    "name": "Your Organization",
-    "url": "https://yourdomain.com",
-  },
-  "images": {
-    "og": "/Nextjs-Elite-OG-Image.webp",
-    "cover": "/Nextjs-Elite-Cover.webp",
-  },
-  "manifest": "/manifest.webmanifest",
+  "description": "Frontend-first Next.js 16 + React 19 boilerplate with i18n, RBAC and BetterAuth."
 }
 ```
 
-> For the full schema and all available fields, see `src/features/site/site.config.json` and the Zod parser in `src/features/site/config.ts`.
-
-### Adding a language
+<details>
+<summary><b>Adding a Language</b></summary>
 
 1. Add the locale code to `languages.supported` in `site.config.json` and add an entry under `languages.locales`.
 2. Create `messages/<locale>.json` mirroring `messages/en.json`.
 3. The `next-intl` runtime picks it up automatically; types update from `src/global.d.ts`.
+</details>
 
-### Adding a role
+<details>
+<summary><b>Adding a Role</b></summary>
 
 1. Append the role to the `UserRole` union in `src/features/auth/rbac/permissions.ts`.
 2. Map permissions for the role in `src/features/auth/rbac/roles.ts`.
 3. Optional: add a parallel route slot — `src/app/(protected)/@<role>/...` — and update `(protected)/layout.tsx` to render it based on permissions.
-   <br/><br/>
+</details>
 
-## Available Scripts
+<br/>
+
+## Development & Testing
+
+<details>
+<summary><b>View Available Scripts</b></summary>
 
 | Command              | Description                                  |
 | -------------------- | -------------------------------------------- |
@@ -326,49 +386,54 @@ It drives:
 | `npm run e2e:ui`     | Playwright UI mode                           |
 | `npm run e2e:webkit` | Playwright WebKit only                       |
 
-<br/><br/>
+</details>
 
-## Testing
+<details>
+<summary><b>Testing Details</b></summary>
 
 - **Unit / component:** Vitest + React Testing Library. Feature specs in `tests/`; colocated `*.test.ts(x)` next to components (e.g. `src/components/ui/`) and libs.
 - **End-to-end:** Playwright in `e2e/`. `npm run e2e` boots the dev server automatically; `npm run e2e:ui` is great for debugging selectors and replaying failures locally.
 - **WebKit-only setup** (saves disk space): `npx playwright install webkit && npm run e2e:webkit`.
-  <br/><br/>
+</details>
 
-## CI/CD
+<details>
+<summary><b>CI/CD Pipeline</b></summary>
 
 - `.github/workflows/check.yml` — typecheck → lint → knip → unit tests → build, on every push and PR.
 - `.github/workflows/playwright.yml` — full Playwright suite (Chromium, Firefox, WebKit).
 - `.github/renovate.json` — groups non-major dependency updates and automerges patches.
-  <br/><br/>
+</details>
 
-## Best for
+<br/>
 
-- SaaS apps with multiple user roles
-- Internationalized products (LTR + RTL)
-- Frontends consuming an existing backend / BFF
-- Enterprise apps with auth, RBAC, observability needs
+## When to use
 
-Probably overkill for:
+Next Elite is best for:
 
-- Single-page landing sites
-- Apps that need a tightly-coupled DB layer (this is intentionally API-only)
-  <br/><br/>
+- SaaS apps with multiple user roles.
+- Multi-lingual/Internationalized products (LTR + RTL).
+- Frontends consuming an existing backend or BFF.
+- Projects requiring a clean, feature-based modular structure.
+
+It is probably overkill for:
+
+- Single-page landing sites.
+- Apps that need a tightly-coupled DB layer (API-only design).
+
+<br/>
 
 ## Contributing
 
 1. Fork & branch from `main` (`feat/...`, `fix/...`, etc.)
-2. `npm run check` must pass locally.
-3. Use Conventional Commits — Lefthook will enforce it.
-4. Open a PR with a clear description.
-   <br/><br/>
-   <br/><br/>
+2. Ensure `npm run check` passes locally.
+3. Use Conventional Commits.
+4. Open a pull request.
+
+<br/>
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
-
----
+MIT [LICENSE](LICENSE)
 
 <div align="center">
 
