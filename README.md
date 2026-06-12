@@ -35,7 +35,7 @@
 
 ## Introduction
 
-Next Elite is an opinionated, frontend-first Next.js boilerplate designed to consume APIs (REST/GraphQL/BFF) instead of owning a database, allowing you to drop it on top of any backend you already have.
+Next Elite is a frontend-first Next.js boilerplate designed to consume APIs (REST/GraphQL/BFF) instead of owning a database, allowing you to drop it on top of any backend you already have.
 
 It is feature-based, offering a polished developer experience (DX), built-in role-based access control (RBAC), type-safe internationalization (i18n), and is optimized for speed, SEO, and developer productivity.
 
