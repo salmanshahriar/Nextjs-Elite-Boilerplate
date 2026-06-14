@@ -10,6 +10,8 @@ import {
   siteConfig,
   type Locale,
 } from '@/features/site/config';
+import { cn } from '@/libs/utils';
+import { Check } from 'lucide-react';
 import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 
@@ -63,7 +65,7 @@ const AboutPage = async () => {
         </h1>
       </header>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
         <Card className="shadow-sm">
           <CardHeader>
             <CardTitle>What is {siteConfig.appName}?</CardTitle>
@@ -81,11 +83,23 @@ const AboutPage = async () => {
             <CardTitle>Who is it for?</CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground">
-            <ul className="space-y-2">
+            <ul
+              className={cn('space-y-2.5', isRtl ? 'text-right' : 'text-left')}
+            >
               {audienceItems.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-0.5 text-primary">✓</span>
-                  <span>{item}</span>
+                <li
+                  key={item}
+                  className={cn(
+                    'flex items-start gap-2.5',
+                    isRtl && 'flex-row-reverse',
+                  )}
+                >
+                  <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20">
+                    <Check className="h-2.5 w-2.5 stroke-[3]" />
+                  </div>
+                  <span className="leading-normal text-muted-foreground/90">
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -93,17 +107,29 @@ const AboutPage = async () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
         <Card className="shadow-sm">
           <CardHeader>
             <CardTitle>Stack & UI</CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground">
-            <ul className="space-y-2">
+            <ul
+              className={cn('space-y-2.5', isRtl ? 'text-right' : 'text-left')}
+            >
               {stackItems.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-0.5 text-primary">✓</span>
-                  <span>{item}</span>
+                <li
+                  key={item}
+                  className={cn(
+                    'flex items-start gap-2.5',
+                    isRtl && 'flex-row-reverse',
+                  )}
+                >
+                  <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20">
+                    <Check className="h-2.5 w-2.5 stroke-[3]" />
+                  </div>
+                  <span className="leading-normal text-muted-foreground/90">
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -115,11 +141,23 @@ const AboutPage = async () => {
             <CardTitle>Auth & platform</CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground">
-            <ul className="space-y-2">
+            <ul
+              className={cn('space-y-2.5', isRtl ? 'text-right' : 'text-left')}
+            >
               {platformItems.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-0.5 text-primary">✓</span>
-                  <span>{item}</span>
+                <li
+                  key={item}
+                  className={cn(
+                    'flex items-start gap-2.5',
+                    isRtl && 'flex-row-reverse',
+                  )}
+                >
+                  <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20">
+                    <Check className="h-2.5 w-2.5 stroke-[3]" />
+                  </div>
+                  <span className="leading-normal text-muted-foreground/90">
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -131,11 +169,23 @@ const AboutPage = async () => {
             <CardTitle>DX & quality</CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground">
-            <ul className="space-y-2">
+            <ul
+              className={cn('space-y-2.5', isRtl ? 'text-right' : 'text-left')}
+            >
               {dxItems.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-0.5 text-primary">✓</span>
-                  <span>{item}</span>
+                <li
+                  key={item}
+                  className={cn(
+                    'flex items-start gap-2.5',
+                    isRtl && 'flex-row-reverse',
+                  )}
+                >
+                  <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20">
+                    <Check className="h-2.5 w-2.5 stroke-[3]" />
+                  </div>
+                  <span className="leading-normal text-muted-foreground/90">
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>

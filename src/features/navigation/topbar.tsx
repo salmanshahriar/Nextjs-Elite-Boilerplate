@@ -42,7 +42,7 @@ export function Topbar() {
   const segments = pathname.split('/').filter(Boolean);
 
   return (
-    <header className="sticky top-0 z-30 hidden h-14 w-full shrink-0 items-center justify-between border-b border-border/40 bg-background/40 px-4 backdrop-blur-xl md:flex md:px-6">
+    <header className="topbar-glass sticky top-0 z-30 hidden h-[61px] w-full shrink-0 items-center justify-between border-b border-border/40 px-4 md:flex md:px-6">
       <div className="flex min-w-0 flex-1 items-center gap-3">
         {/* Sidebar Toggle Button for Desktop */}
         <Button

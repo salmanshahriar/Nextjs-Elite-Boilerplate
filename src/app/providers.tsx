@@ -1,5 +1,6 @@
 'use client';
 
+import { ThemeOverlay } from '@/components/shared/theme-overlay';
 import { AuthProvider } from '@/features/auth/hooks/auth-provider';
 import type { AuthUser } from '@/features/auth/types';
 import { TopLoader } from '@/features/navigation/top-loader';
@@ -24,6 +25,7 @@ const Providers = ({ children, initialUser = null }: ProvidersProps) => {
         <AuthProvider initialUser={initialUser}>
           {children}
           <Toaster richColors />
+          <ThemeOverlay />
         </AuthProvider>
       </QueryClientProvider>
     </ThemeProvider>

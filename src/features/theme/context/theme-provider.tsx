@@ -9,6 +9,7 @@ import {
   useSyncExternalStore,
   type PropsWithChildren,
 } from 'react';
+import { flushSync } from 'react-dom';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -18,7 +19,7 @@ type ThemeProviderProps = PropsWithChildren<{
 
 type ThemeContextValue = {
   theme: Theme;
-  setTheme: (_theme: Theme) => void;
+  setTheme: (theme: Theme, options?: { x?: number; y?: number }) => void;
 };
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
@@ -46,8 +47,16 @@ function subscribeToThemeStore(onStoreChange: () => void) {
     }
   };
 
+  const handleCustomTheme = () => {
+    onStoreChange();
+  };
+
   window.addEventListener('storage', handleStorage);
-  return () => window.removeEventListener('storage', handleStorage);
+  window.addEventListener('theme-change', handleCustomTheme);
+  return () => {
+    window.removeEventListener('storage', handleStorage);
+    window.removeEventListener('theme-change', handleCustomTheme);
+  };
 }
 
 function getThemeSnapshot(defaultTheme: Theme): Theme {
@@ -86,10 +95,37 @@ export const ThemeProvider = ({
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [defaultTheme, theme]);
 
-  const setTheme = useCallback((value: Theme) => {
-    window.localStorage.setItem('theme', value);
-    applyTheme(value);
-  }, []);
+  const setTheme = useCallback(
+    (value: Theme, options?: { x?: number; y?: number }) => {
+      const applyThemeChange = () => {
+        window.localStorage.setItem('theme', value);
+        applyTheme(value);
+        window.dispatchEvent(new Event('theme-change'));
+      };
+
+      if (typeof window === 'undefined') {
+        applyThemeChange();
+        return;
+      }
+
+      if (!document.startViewTransition) {
+        applyThemeChange();
+        return;
+      }
+
+      const x = options?.x ?? window.innerWidth / 2;
+      const y = options?.y ?? window.innerHeight / 2;
+      const root = document.documentElement;
+
+      root.style.setProperty('--x', `${x}px`);
+      root.style.setProperty('--y', `${y}px`);
+
+      document.startViewTransition(() => {
+        flushSync(applyThemeChange);
+      });
+    },
+    [],
+  );
 
   const value = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
 

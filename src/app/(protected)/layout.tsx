@@ -31,7 +31,7 @@ const ProtectedLayout = async ({
     <div className="relative flex h-screen overflow-hidden">
       <BackgroundGradient />
       <Sidebar />
-      <div className="relative z-10 flex flex-1 flex-col overflow-hidden pt-14 md:pt-0">
+      <div className="relative z-10 flex flex-1 flex-col overflow-hidden pt-[60px] md:pt-0">
         <Topbar />
         <main className="flex-1 overflow-y-auto">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">

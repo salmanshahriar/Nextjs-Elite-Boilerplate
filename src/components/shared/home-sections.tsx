@@ -111,7 +111,7 @@ export const HomeGetStartedSection = ({
                   {installLines.map((line) => (
                     <span key={line} className="flex min-w-0 gap-2">
                       <span
-                        className="shrink-0 font-bold text-foreground select-none"
+                        className="shrink-0 font-bold text-primary select-none"
                         aria-hidden
                       >
                         $

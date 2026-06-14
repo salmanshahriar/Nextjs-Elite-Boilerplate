@@ -85,8 +85,8 @@ function SidebarContent({
     >
       <div
         className={cn(
-          'flex items-center border-b border-border transition-all',
-          isCollapsed ? 'h-14 justify-center px-2' : 'h-14 px-4',
+          'flex items-center border-b border-border/40 transition-all',
+          isCollapsed ? 'h-[60px] justify-center px-2' : 'h-[60px] px-4',
         )}
       >
         <Link
@@ -330,7 +330,7 @@ export function Sidebar({
   return (
     <>
       <div
-        className="fixed top-0 right-0 left-0 z-50 flex h-14 items-center border-b border-border bg-background/60 px-4 backdrop-blur-xl md:hidden"
+        className="topbar-glass fixed top-0 right-0 left-0 z-50 flex h-[60px] items-center border-b border-border/40 px-4 md:hidden"
         dir={isRtl ? 'rtl' : 'ltr'}
       >
         <div className="flex flex-1 items-center justify-start gap-3">

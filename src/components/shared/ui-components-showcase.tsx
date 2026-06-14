@@ -168,9 +168,11 @@ import {
   Heart,
   Italic,
   Mail,
+  Moon,
   Search,
   Settings,
   Star,
+  Sun,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { type ReactNode, useEffect, useState } from 'react';
@@ -228,13 +230,87 @@ const COMBOBOX_OPTIONS = [
 ];
 
 const SECTIONS = [
-  { id: 'actions', key: 'actions' },
-  { id: 'forms', key: 'forms' },
-  { id: 'feedback', key: 'feedback' },
-  { id: 'data-display', key: 'dataDisplay' },
-  { id: 'navigation', key: 'navigation' },
-  { id: 'overlays', key: 'overlays' },
-  { id: 'layout', key: 'layout' },
+  {
+    id: 'actions',
+    key: 'actions',
+    items: [
+      { id: 'button', label: 'Button' },
+      { id: 'button-group', label: 'Button Group' },
+      { id: 'toggle', label: 'Toggle' },
+      { id: 'toggle-group', label: 'Toggle Group' },
+    ],
+  },
+  {
+    id: 'forms',
+    key: 'forms',
+    items: [
+      { id: 'input', label: 'Input' },
+      { id: 'textarea', label: 'Textarea' },
+      { id: 'label', label: 'Label' },
+      { id: 'select', label: 'Select' },
+      { id: 'checkbox', label: 'Checkbox' },
+      { id: 'radio-group', label: 'Radio Group' },
+      { id: 'switch', label: 'Switch' },
+      { id: 'combobox', label: 'Combobox' },
+      { id: 'input-group', label: 'Input Group' },
+      { id: 'input-otp', label: 'Input OTP' },
+      { id: 'password-input', label: 'Password Input' },
+      { id: 'input-error', label: 'Input Error' },
+      { id: 'form', label: 'Form' },
+    ],
+  },
+  {
+    id: 'feedback',
+    key: 'feedback',
+    items: [
+      { id: 'alert', label: 'Alert' },
+      { id: 'badge', label: 'Badge' },
+      { id: 'progress', label: 'Progress' },
+      { id: 'spinner', label: 'Spinner' },
+      { id: 'skeleton', label: 'Skeleton' },
+    ],
+  },
+  {
+    id: 'data-display',
+    key: 'dataDisplay',
+    items: [
+      { id: 'avatar', label: 'Avatar' },
+      { id: 'card', label: 'Card' },
+      { id: 'table', label: 'Table' },
+      { id: 'separator', label: 'Separator' },
+      { id: 'icon', label: 'Icon' },
+      { id: 'placeholder-pattern', label: 'Placeholder Pattern' },
+    ],
+  },
+  {
+    id: 'navigation',
+    key: 'navigation',
+    items: [
+      { id: 'breadcrumb', label: 'Breadcrumb' },
+      { id: 'tabs', label: 'Tabs' },
+    ],
+  },
+  {
+    id: 'overlays',
+    key: 'overlays',
+    items: [
+      { id: 'dialog', label: 'Dialog' },
+      { id: 'sheet', label: 'Sheet' },
+      { id: 'popover', label: 'Popover' },
+      { id: 'tooltip', label: 'Tooltip' },
+      { id: 'dropdown-menu', label: 'Dropdown Menu' },
+    ],
+  },
+  {
+    id: 'layout',
+    key: 'layout',
+    items: [
+      { id: 'accordion', label: 'Accordion' },
+      { id: 'collapsible', label: 'Collapsible' },
+      { id: 'carousel', label: 'Carousel' },
+      { id: 'calendar', label: 'Calendar' },
+    ],
+  },
 ] as const;
 
 function ShowcaseSection({
@@ -262,18 +338,23 @@ function ShowcaseSection({
 }
 
 function ComponentBlock({
+  id,
   title,
   children,
   className,
   cardClassName,
 }: {
+  id?: string;
   title: string;
   children: ReactNode;
   className?: string;
   cardClassName?: string;
 }) {
   return (
-    <Card className={cn('gap-0 overflow-hidden py-0', cardClassName)}>
+    <Card
+      id={id}
+      className={cn('scroll-mt-24 gap-0 overflow-hidden py-0', cardClassName)}
+    >
       <CardHeader className="border-b bg-muted/30 py-4">
         <CardTitle className="text-base">{title}</CardTitle>
       </CardHeader>
@@ -376,25 +457,49 @@ export function UiComponentsShowcase() {
   return (
     <TooltipProvider>
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-12 lg:flex-row lg:gap-12">
-        <aside className="hidden shrink-0 text-sidebar-foreground lg:block lg:w-48">
+        <aside className="hidden shrink-0 text-sidebar-foreground lg:block lg:w-56">
           <nav className="sticky top-24 space-y-1">
             <p className="mb-3 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
               {t('onThisPage')}
             </p>
-            {SECTIONS.map((section) => (
-              <a
-                key={section.id}
-                href={`#${section.id}`}
-                className={cn(
-                  'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                  activeSection === section.id
-                    ? 'text-primary'
-                    : 'text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
-                )}
-              >
-                {t(`sections.${section.key}`)}
-              </a>
-            ))}
+            {SECTIONS.map((section) => {
+              const isActive = activeSection === section.id;
+              return (
+                <div key={section.id} className="space-y-0.5">
+                  <a
+                    href={`#${section.id}`}
+                    className={cn(
+                      'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                      isActive
+                        ? 'bg-primary/5 font-semibold text-primary'
+                        : 'text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+                    )}
+                  >
+                    {t(`sections.${section.key}`)}
+                  </a>
+                  <div
+                    className={cn(
+                      'grid pl-4 transition-all duration-300 ease-in-out',
+                      isActive
+                        ? 'grid-rows-[1fr] py-1 opacity-100'
+                        : 'pointer-events-none grid-rows-[0fr] opacity-0',
+                    )}
+                  >
+                    <div className="space-y-0.5 overflow-hidden">
+                      {section.items.map((item) => (
+                        <a
+                          key={item.id}
+                          href={`#${section.id}-${item.id}`}
+                          className="block rounded-md px-3 py-1 text-xs text-muted-foreground transition-colors hover:bg-sidebar-accent/30 hover:text-foreground"
+                        >
+                          {item.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </nav>
         </aside>
 
@@ -409,7 +514,7 @@ export function UiComponentsShowcase() {
             title={t('sections.actions')}
             description={t('sections.actionsDesc')}
           >
-            <ComponentBlock title="Button">
+            <ComponentBlock id="actions-button" title="Button">
               <SubLabel>Variants</SubLabel>
               <VariantGrid>
                 {BUTTON_VARIANTS.map((variant) => (
@@ -442,7 +547,7 @@ export function UiComponentsShowcase() {
               </VariantGrid>
             </ComponentBlock>
 
-            <ComponentBlock title="Button Group">
+            <ComponentBlock id="actions-button-group" title="Button Group">
               <SubLabel>Horizontal</SubLabel>
               <ButtonGroup>
                 <Button variant="outline">Left</Button>
@@ -470,7 +575,7 @@ export function UiComponentsShowcase() {
               </ButtonGroup>
             </ComponentBlock>
 
-            <ComponentBlock title="Toggle">
+            <ComponentBlock id="actions-toggle" title="Toggle">
               <SubLabel>Variants</SubLabel>
               <VariantGrid>
                 <Toggle aria-label="Bold">
@@ -494,7 +599,7 @@ export function UiComponentsShowcase() {
               </VariantGrid>
             </ComponentBlock>
 
-            <ComponentBlock title="Toggle Group">
+            <ComponentBlock id="actions-toggle-group" title="Toggle Group">
               <SubLabel>Single</SubLabel>
               <ToggleGroup type="single" defaultValue="left">
                 <ToggleGroupItem value="left" aria-label="Align left">
@@ -524,7 +629,7 @@ export function UiComponentsShowcase() {
             title={t('sections.forms')}
             description={t('sections.formsDesc')}
           >
-            <ComponentBlock title="Input">
+            <ComponentBlock id="forms-input" title="Input">
               <SubLabel>States</SubLabel>
               <div className="grid max-w-md gap-4">
                 <Input placeholder="Default input" />
@@ -533,7 +638,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Textarea">
+            <ComponentBlock id="forms-textarea" title="Textarea">
               <SubLabel>States</SubLabel>
               <div className="grid max-w-md gap-4">
                 <Textarea placeholder="Write something..." />
@@ -542,14 +647,14 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Label">
+            <ComponentBlock id="forms-label" title="Label">
               <div className="flex max-w-md flex-col gap-2">
                 <Label htmlFor="demo-email">Email address</Label>
                 <Input id="demo-email" placeholder="you@example.com" />
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Select">
+            <ComponentBlock id="forms-select" title="Select">
               <div className="max-w-xs">
                 <Select defaultValue="react">
                   <SelectTrigger>
@@ -564,7 +669,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Checkbox">
+            <ComponentBlock id="forms-checkbox" title="Checkbox">
               <div className="grid max-w-md gap-4">
                 <div className="flex items-center gap-2">
                   <Checkbox id="terms" />
@@ -577,7 +682,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Radio Group">
+            <ComponentBlock id="forms-radio-group" title="Radio Group">
               <div className="max-w-xs">
                 <RadioGroup defaultValue="comfortable">
                   <div className="flex items-center gap-2">
@@ -596,20 +701,54 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Switch">
-              <div className="grid max-w-md gap-4">
-                <div className="flex items-center gap-2">
-                  <Switch id="airplane" />
-                  <Label htmlFor="airplane">Airplane mode</Label>
+            <ComponentBlock id="forms-switch" title="Switch">
+              <div className="grid max-w-md gap-6">
+                <div>
+                  <SubLabel>Sizes</SubLabel>
+                  <VariantGrid>
+                    <div className="flex items-center gap-2">
+                      <Switch id="airplane-default" />
+                      <Label htmlFor="airplane-default">Default Size</Label>
+                    </div>
+                    <div className="ml-6 flex items-center gap-2">
+                      <Switch id="airplane-lg" size="lg" />
+                      <Label htmlFor="airplane-lg">Large Size</Label>
+                    </div>
+                  </VariantGrid>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Switch id="airplane-disabled" disabled />
-                  <Label htmlFor="airplane-disabled">Disabled</Label>
+
+                <div>
+                  <SubLabel>With Icons</SubLabel>
+                  <VariantGrid>
+                    <div className="flex items-center gap-2">
+                      <Switch
+                        id="switch-icons"
+                        size="lg"
+                        checkedIcon={
+                          <Moon className="h-3 w-3 animate-in text-primary duration-300 fade-in zoom-in" />
+                        }
+                        uncheckedIcon={
+                          <Sun className="h-3 w-3 animate-in text-amber-500 duration-300 fade-in zoom-in" />
+                        }
+                      />
+                      <Label htmlFor="switch-icons">Icon Toggle Switch</Label>
+                    </div>
+                  </VariantGrid>
+                </div>
+
+                <div>
+                  <SubLabel>States</SubLabel>
+                  <VariantGrid>
+                    <div className="flex items-center gap-2">
+                      <Switch id="airplane-disabled" disabled />
+                      <Label htmlFor="airplane-disabled">Disabled</Label>
+                    </div>
+                  </VariantGrid>
                 </div>
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Combobox">
+            <ComponentBlock id="forms-combobox" title="Combobox">
               <div className="max-w-xs">
                 <Combobox
                   options={COMBOBOX_OPTIONS}
@@ -620,7 +759,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Input Group">
+            <ComponentBlock id="forms-input-group" title="Input Group">
               <div className="grid max-w-md gap-6">
                 <div>
                   <SubLabel>Start addon</SubLabel>
@@ -653,7 +792,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Input OTP">
+            <ComponentBlock id="forms-input-otp" title="Input OTP">
               <div className="w-fit">
                 <InputOTP maxLength={6}>
                   <InputOTPGroup>
@@ -671,7 +810,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Password Input">
+            <ComponentBlock id="forms-password-input" title="Password Input">
               <div className="grid max-w-md gap-6">
                 <div>
                   <SubLabel>Default</SubLabel>
@@ -692,7 +831,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Input Error">
+            <ComponentBlock id="forms-input-error" title="Input Error">
               <div className="grid max-w-md gap-2">
                 <Label htmlFor="demo-error-input">Username</Label>
                 <Input
@@ -704,7 +843,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Form">
+            <ComponentBlock id="forms-form" title="Form">
               <FormShowcase />
             </ComponentBlock>
           </ShowcaseSection>
@@ -714,7 +853,7 @@ export function UiComponentsShowcase() {
             title={t('sections.feedback')}
             description={t('sections.feedbackDesc')}
           >
-            <ComponentBlock title="Alert">
+            <ComponentBlock id="feedback-alert" title="Alert">
               <SubLabel>Interactive</SubLabel>
               <div className="mb-4 flex flex-wrap gap-2">
                 <Button
@@ -755,7 +894,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Badge">
+            <ComponentBlock id="feedback-badge" title="Badge">
               <SubLabel>Variants</SubLabel>
               <VariantGrid>
                 {BADGE_VARIANTS.map((variant) => (
@@ -766,7 +905,7 @@ export function UiComponentsShowcase() {
               </VariantGrid>
             </ComponentBlock>
 
-            <ComponentBlock title="Progress">
+            <ComponentBlock id="feedback-progress" title="Progress">
               <SubLabel>Variants</SubLabel>
               <div className="max-w-md space-y-4">
                 {PROGRESS_VARIANTS.map((variant) => (
@@ -792,11 +931,11 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Spinner">
+            <ComponentBlock id="feedback-spinner" title="Spinner">
               <Spinner className="size-6" />
             </ComponentBlock>
 
-            <ComponentBlock title="Skeleton">
+            <ComponentBlock id="feedback-skeleton" title="Skeleton">
               <SubLabel>Profile placeholder</SubLabel>
               <div className="flex items-center gap-4">
                 <Skeleton className="size-12 rounded-full" />
@@ -813,7 +952,7 @@ export function UiComponentsShowcase() {
             title={t('sections.dataDisplay')}
             description={t('sections.dataDisplayDesc')}
           >
-            <ComponentBlock title="Avatar">
+            <ComponentBlock id="data-display-avatar" title="Avatar">
               <div className="grid gap-6">
                 <div>
                   <SubLabel>With image</SubLabel>
@@ -834,7 +973,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Card">
+            <ComponentBlock id="data-display-card" title="Card">
               <div className="grid gap-6">
                 <div>
                   <SubLabel>With footer</SubLabel>
@@ -884,7 +1023,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Table">
+            <ComponentBlock id="data-display-table" title="Table">
               <Table>
                 <TableCaption>Team members and their roles.</TableCaption>
                 <TableHeader>
@@ -919,7 +1058,7 @@ export function UiComponentsShowcase() {
               </Table>
             </ComponentBlock>
 
-            <ComponentBlock title="Separator">
+            <ComponentBlock id="data-display-separator" title="Separator">
               <div className="space-y-2">
                 <p className="text-sm">Above separator</p>
                 <Separator />
@@ -927,7 +1066,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Icon">
+            <ComponentBlock id="data-display-icon" title="Icon">
               <SubLabel>Lucide icons</SubLabel>
               <div className="flex items-center gap-4">
                 <Icon iconNode={Heart} className="size-6 text-destructive" />
@@ -936,7 +1075,10 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Placeholder Pattern">
+            <ComponentBlock
+              id="data-display-placeholder-pattern"
+              title="Placeholder Pattern"
+            >
               <div className="relative h-32 overflow-hidden rounded-lg border">
                 <PlaceholderPattern className="absolute inset-0 size-full stroke-muted-foreground/20" />
               </div>
@@ -948,7 +1090,7 @@ export function UiComponentsShowcase() {
             title={t('sections.navigation')}
             description={t('sections.navigationDesc')}
           >
-            <ComponentBlock title="Breadcrumb">
+            <ComponentBlock id="navigation-breadcrumb" title="Breadcrumb">
               <div className="grid gap-6">
                 <div>
                   <SubLabel>Default</SubLabel>
@@ -991,7 +1133,7 @@ export function UiComponentsShowcase() {
               </div>
             </ComponentBlock>
 
-            <ComponentBlock title="Tabs">
+            <ComponentBlock id="navigation-tabs" title="Tabs">
               <Tabs defaultValue="account" className="max-w-md">
                 <TabsList>
                   <TabsTrigger value="account">Account</TabsTrigger>
@@ -1059,7 +1201,7 @@ export function UiComponentsShowcase() {
             title={t('sections.overlays')}
             description={t('sections.overlaysDesc')}
           >
-            <ComponentBlock title="Dialog">
+            <ComponentBlock id="overlays-dialog" title="Dialog">
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant="outline">Open dialog</Button>
@@ -1079,7 +1221,7 @@ export function UiComponentsShowcase() {
               </Dialog>
             </ComponentBlock>
 
-            <ComponentBlock title="Sheet">
+            <ComponentBlock id="overlays-sheet" title="Sheet">
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="outline">Open sheet</Button>
@@ -1099,7 +1241,7 @@ export function UiComponentsShowcase() {
               </Sheet>
             </ComponentBlock>
 
-            <ComponentBlock title="Popover">
+            <ComponentBlock id="overlays-popover" title="Popover">
               <Popover>
                 <PopoverTrigger asChild>
                   <Button variant="outline">Open popover</Button>
@@ -1112,7 +1254,7 @@ export function UiComponentsShowcase() {
               </Popover>
             </ComponentBlock>
 
-            <ComponentBlock title="Tooltip">
+            <ComponentBlock id="overlays-tooltip" title="Tooltip">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="outline">Hover me</Button>
@@ -1121,7 +1263,7 @@ export function UiComponentsShowcase() {
               </Tooltip>
             </ComponentBlock>
 
-            <ComponentBlock title="Dropdown Menu">
+            <ComponentBlock id="overlays-dropdown-menu" title="Dropdown Menu">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline">Open menu</Button>
@@ -1172,7 +1314,7 @@ export function UiComponentsShowcase() {
             title={t('sections.layout')}
             description={t('sections.layoutDesc')}
           >
-            <ComponentBlock title="Accordion">
+            <ComponentBlock id="layout-accordion" title="Accordion">
               <SubLabel>Single collapsible</SubLabel>
               <Accordion type="single" collapsible className="max-w-lg">
                 <AccordionItem value="item-1">
@@ -1190,7 +1332,7 @@ export function UiComponentsShowcase() {
               </Accordion>
             </ComponentBlock>
 
-            <ComponentBlock title="Collapsible">
+            <ComponentBlock id="layout-collapsible" title="Collapsible">
               <Collapsible
                 open={collapsibleOpen}
                 onOpenChange={setCollapsibleOpen}
@@ -1220,7 +1362,7 @@ export function UiComponentsShowcase() {
               </Collapsible>
             </ComponentBlock>
 
-            <ComponentBlock title="Carousel">
+            <ComponentBlock id="layout-carousel" title="Carousel">
               <Carousel className="mx-auto max-w-sm">
                 <CarouselContent>
                   {['Slide 1', 'Slide 2', 'Slide 3'].map((slide) => (
@@ -1236,7 +1378,7 @@ export function UiComponentsShowcase() {
               </Carousel>
             </ComponentBlock>
 
-            <ComponentBlock title="Calendar">
+            <ComponentBlock id="layout-calendar" title="Calendar">
               <SubLabel>Single date</SubLabel>
               <div className="w-fit">
                 <Calendar

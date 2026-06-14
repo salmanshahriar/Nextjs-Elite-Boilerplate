@@ -13,7 +13,9 @@ import {
   type Locale,
 } from '@/features/site/config';
 import { githubRepoUrl, vercelDeployUrl } from '@/features/site/github';
+import { cn } from '@/libs/utils';
 import {
+  Check,
   Cpu,
   FileText,
   FlaskConical,
@@ -79,7 +81,7 @@ const HeroSection = async ({
     {
       icon: Search,
       title: 'SEO + PWA, server-first',
-      description: 'Metadata, sitemap, and manifest generated on the server.',
+      description: 'Metadata, sitemap & manifest generated on server.',
       badges: [{ label: 'SEO', value: 'OG + JSON-LD' }],
       details: [
         'Open Graph, Twitter cards, and JSON-LD from site config',
@@ -118,7 +120,7 @@ const HeroSection = async ({
         { label: 'Forms', value: 'React Hook Form' },
       ],
       details: [
-        'Dedicated Zod schemas for login, register, and password reset',
+        'Zod schemas for login, register, and password reset',
         'Inferred types with z.infer; used in client auth forms',
         'zodResolver plus InputError for accessible inline errors',
       ],
@@ -126,13 +128,13 @@ const HeroSection = async ({
     {
       icon: Shield,
       title: 'Type-safe environment',
-      description: 'T3 Env validates every variable with Zod at build time.',
+      description: 'T3 Env validates every variable with Zod',
       badges: [
         { label: 'Env', value: 'T3 Env' },
         { label: 'Schema', value: 'Zod' },
       ],
       details: [
-        'Server secrets and NEXT_PUBLIC_* client vars in src/libs/env.ts',
+        'Server secrets and NEXT_PUBLIC_* client vars',
         'Zod validates URLs, booleans, and required auth secrets',
         'SKIP_ENV_VALIDATION for CI, Vitest, and lint',
       ],
@@ -157,7 +159,7 @@ const HeroSection = async ({
     <div
       className={`mx-auto flex max-w-7xl flex-col gap-12 px-4 pt-20 ${isRtl ? 'text-right' : 'text-left'}`}
     >
-      <div className="flex flex-col items-center gap-6">
+      <div className="flex flex-col items-center gap-6 pb-10">
         <header className="space-y-0 text-center">
           <h1 className="text-5xl font-bold tracking-tight text-foreground">
             {siteConfig.appName}
@@ -192,7 +194,7 @@ const HeroSection = async ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
         {features.map((feature) => (
           <Card key={feature.title} hover>
             <CardHeader className="flex flex-col items-center text-center">
@@ -227,16 +229,24 @@ const HeroSection = async ({
                   </CardDescription>
                 )}
 
-                <ul className="mt-2 w-full space-y-2 border-t border-border/40 pt-4 text-left">
+                <ul
+                  className={cn(
+                    'mt-4 w-full space-y-2.5 border-t border-border/40 pt-4',
+                    isRtl ? 'text-right' : 'text-left',
+                  )}
+                >
                   {feature.details.map((detail) => (
                     <li
                       key={detail}
-                      className="flex items-start gap-2 text-xs text-muted-foreground"
+                      className={cn(
+                        'flex items-start gap-2.5 text-xs text-muted-foreground/90 transition-colors hover:text-foreground',
+                        isRtl ? 'flex-row-reverse' : 'flex-row',
+                      )}
                     >
-                      <span className="mt-0.5 font-semibold text-[#9d8cff]">
-                        ✓
-                      </span>
-                      <span>{detail}</span>
+                      <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20">
+                        <Check className="h-2.5 w-2.5 stroke-[3]" />
+                      </div>
+                      <span className="leading-normal">{detail}</span>
                     </li>
                   ))}
                 </ul>
